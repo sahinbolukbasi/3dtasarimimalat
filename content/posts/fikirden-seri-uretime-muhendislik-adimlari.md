@@ -1,5 +1,5 @@
 ---
-title: 'Fikirden Seri Üretime: 5 Aşamalı Başarılı Proje'
+title: 'Fikirden Seri Üretime: 5 Aşamalı Başarılı Proje Yönetimi'
 slug: fikirden-seri-uretime-muhendislik-adimlari
 date: 2026-09-20
 category: Ürün Geliştirme
