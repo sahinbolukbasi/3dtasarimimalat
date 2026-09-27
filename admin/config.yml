@@ -9,7 +9,6 @@ backend:
   name: github
   repo: sahinbolukbasi/3dtasarimimalat
   branch: main
-  base_url: https://api.github.com
 
 # Yerel geliştirme ortamı desteği (npx sveltia-cms-auth veya Decap proxy ile)
 local_backend: true

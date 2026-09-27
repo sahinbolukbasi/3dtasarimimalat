@@ -3,10 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Tasarım İmalat | Sveltia CMS Yönetim Paneli</title>
+  <title>Yönetim Paneli | 3D Tasarım İmalat</title>
+  
+  <!-- Sekme Logosu (Favicon) -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+
   <!-- Sveltia CMS CDN -->
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+  <style>
+    /* Admin Giriş Yardım Kutusu */
+    #adminHelpBanner {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      max-width: 420px;
+      background: #0f172a;
+      border: 1px solid rgba(224, 122, 44, 0.4);
+      color: #cbd5e1;
+      padding: 1.25rem;
+      border-radius: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      z-index: 99999;
+      display: block;
+    }
+    #adminHelpBanner h4 {
+      color: #f59e0b;
+      margin: 0 0 0.5rem 0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #adminHelpBanner ol {
+      margin: 0.5rem 0 0.75rem 1.25rem;
+      padding: 0;
+    }
+    #adminHelpBanner li {
+      margin-bottom: 0.35rem;
+    }
+    #adminHelpBanner a {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+    #adminHelpBanner .close-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
+  <!-- Giriş Rehberi Yardım Bildirimi (Kullanıcı CMS'e rahatça girebilsin diye) -->
+  <div id="adminHelpBanner">
+    <h4>
+      <span>🔑 GitHub ile Giriş Rehberi</span>
+      <button class="close-btn" onclick="document.getElementById('adminHelpBanner').style.display='none'">✕</button>
+    </h4>
+    <p>GitHub Pages statik çalıştığı için doğrudan <strong>Personal Access Token (PAT)</strong> ile anında giriş yapabilirsiniz:</p>
+    <ol>
+      <li><a href="https://github.com/settings/tokens/new?scopes=repo&description=3dtasarimimalat_CMS" target="_blank" rel="noopener">Buraya tıklayarak</a> GitHub'da token oluşturun.</li>
+      <li><strong>Note:</strong> "3dtasarimimalat CMS" yazın, <strong>repo</strong> kutusunu işaretleyip en alttan <strong>Generate token</strong>'a basın.</li>
+      <li>Oluşan <code>ghp_...</code> kodunu kopyalayıp Sveltia CMS giriş ekranındaki <strong>"Personal Access Token"</strong> kutusuna yapıştırın.</li>
+    </ol>
+    <div style="font-size: 0.75rem; color: #94a3b8;">
+      ✓ Token sadece tarayıcınızda saklanır ve bir daha sorulmaz. Tüm blog yazılarını ve site içeriklerini doğrudan düzenleyebilirsiniz.
+    </div>
+  </div>
 </body>
 </html>

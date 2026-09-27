@@ -8,110 +8,389 @@
   <meta name="description" id="pageDesc" content="Mühendislik ve imalat teknik makaleleri.">
   <meta name="author" content="Makine Mühendisi Ercan Bölükbaşı">
 
-  <!-- Marked.js CDN for Client-side Markdown Rendering -->
+  <!-- Favicon / Sekme Logosu -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
+
+  <!-- Marked.js CDN for Markdown Rendering -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../assets/css/style.css">
 
   <style>
-    .article-container {
-      max-width: 840px;
-      margin: 3rem auto 6rem auto;
-      padding: 0 1.5rem;
+    /* Full-Width / Sağa Sola Yaslanan Geniş Layout (Kullanıcı İsteği) */
+    .post-page-wrapper {
+      width: 96%;
+      max-width: 1520px;
+      margin: 2rem auto 5rem auto;
+      padding: 0 0.75rem;
     }
-    .article-header {
-      margin-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 2rem;
-    }
-    .article-meta-row {
+
+    .post-breadcrumbs {
       display: flex;
       align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+      flex-wrap: wrap;
+    }
+    .post-breadcrumbs a {
+      color: var(--accent-bronze-light);
+    }
+    .post-breadcrumbs a:hover {
+      text-decoration: underline;
+    }
+
+    /* 2 Kolonlu Geniş Grid: Ana Makale + Sağ Sidebar */
+    .post-layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    /* Ana Makale Kolonu */
+    .article-main-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .article-header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.75rem;
+    }
+
+    .article-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-badge-category {
+      background: rgba(224, 122, 44, 0.15);
+      border: 1px solid rgba(224, 122, 44, 0.35);
+      color: var(--accent-bronze-light);
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .article-meta-info {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
       font-size: 0.85rem;
       color: var(--text-muted);
       font-family: var(--font-mono);
-      margin-bottom: 1rem;
     }
-    .article-cover {
+
+    .article-title-heading {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tag / Etiketler Ekranı (Sayfa Üstü Yatay Şerit) */
+    .article-tag-strip {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .tag-pill {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: #94a3b8;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .tag-pill:hover {
+      border-color: var(--accent-bronze);
+      color: var(--accent-bronze-light);
+      background: rgba(224, 122, 44, 0.1);
+    }
+
+    .article-cover-img {
       width: 100%;
-      height: 420px;
+      height: 520px;
       object-fit: cover;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       margin-bottom: 2.5rem;
       border: 1px solid var(--border-subtle);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     }
-    /* Markdown Body Typography */
-    .article-body {
-      color: #e2e8f0;
-      font-size: 1.1rem;
-      line-height: 1.8;
+
+    /* Markdown Tipografi */
+    .article-body-content {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: #cbd5e1;
     }
-    .article-body h1, .article-body h2, .article-body h3 {
+
+    .article-body-content h1, 
+    .article-body-content h2, 
+    .article-body-content h3 {
       color: #fff;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
     }
-    .article-body h2 {
-      font-size: 1.6rem;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 0.5rem;
+
+    .article-body-content h1 { font-size: 2.2rem; }
+    .article-body-content h2 { 
+      font-size: 1.75rem; 
+      border-bottom: 1px solid var(--border-subtle); 
+      padding-bottom: 0.6rem;
       color: var(--accent-bronze-light);
     }
-    .article-body p {
-      margin-bottom: 1.5rem;
-      color: #cbd5e1;
+    .article-body-content h3 { font-size: 1.35rem; color: #38bdf8; }
+
+    .article-body-content p {
+      margin-bottom: 1.6rem;
     }
-    .article-body ul, .article-body ol {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-      color: #cbd5e1;
+
+    .article-body-content ul, .article-body-content ol {
+      margin-bottom: 1.6rem;
+      padding-left: 2rem;
     }
-    .article-body li {
-      margin-bottom: 0.5rem;
+
+    .article-body-content li {
+      margin-bottom: 0.65rem;
     }
-    .article-body blockquote {
+
+    .article-body-content blockquote {
       border-left: 4px solid var(--accent-bronze);
-      padding: 0.75rem 1.25rem;
+      padding: 1rem 1.5rem;
       background: rgba(224, 122, 44, 0.08);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin: 1.5rem 0;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 2rem 0;
       font-style: italic;
       color: #fed7aa;
+      font-size: 1.1rem;
     }
-    .article-body code {
+
+    .article-body-content code {
       font-family: var(--font-mono);
-      background: rgba(15, 23, 42, 0.9);
-      padding: 0.2rem 0.4rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.2rem 0.45rem;
       border-radius: 4px;
-      font-size: 0.9em;
-      color: var(--accent-cyan);
+      font-size: 0.92em;
+      color: #38bdf8;
     }
-    .article-body pre {
-      background: #0b1118;
+
+    .article-body-content pre {
+      background: #090e15;
       border: 1px solid var(--border-subtle);
-      padding: 1.25rem;
+      padding: 1.5rem;
       border-radius: var(--radius-md);
       overflow-x: auto;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
-    .article-tags-wrap {
+
+    .article-body-content pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #e2e8f0;
+    }
+
+    /* Sağ Sidebar (Etiket Ekranı, Yazar, WhatsApp Teklif, Diğer Yazılar) */
+    .post-sidebar {
       display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-subtle);
+      flex-direction: column;
+      gap: 2rem;
+      position: sticky;
+      top: 5.5rem;
     }
-    .article-tag {
-      background: rgba(224, 122, 44, 0.1);
-      border: 1px solid rgba(224, 122, 44, 0.25);
-      color: var(--accent-bronze-light);
-      padding: 0.3rem 0.8rem;
+
+    .sidebar-widget {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .sidebar-widget-title {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Etiketler Ekranı / Tag Cloud Paneli */
+    .tag-cloud-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag-cloud-item {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      padding: 0.4rem 0.85rem;
       border-radius: var(--radius-full);
       font-size: 0.8rem;
       font-family: var(--font-mono);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+    }
+    .tag-cloud-item:hover {
+      background: rgba(224, 122, 44, 0.15);
+      border-color: var(--accent-bronze);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .tag-cloud-item .tag-hash {
+      color: var(--accent-bronze-light);
+      font-weight: 700;
+    }
+
+    /* Yazar Kartı */
+    .author-card-flex {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-bronze), #0f172a);
+      border: 2px solid var(--accent-bronze);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .author-role {
+      font-size: 0.8rem;
+      color: var(--accent-bronze-light);
+      font-family: var(--font-mono);
+    }
+
+    /* İlgili Yazılar Listesi */
+    .related-posts-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .related-post-link {
+      display: block;
+      padding: 0.75rem 1rem;
+      background: rgba(10, 14, 20, 0.5);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .related-post-link:hover {
+      border-color: var(--border-active);
+      background: rgba(224, 122, 44, 0.08);
+      transform: translateX(4px);
+    }
+
+    .related-post-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 0.35rem;
+    }
+
+    .related-post-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Responsive Davranış (Mobilde Asla Bozulmayan) */
+    @media (max-width: 1100px) {
+      .post-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .post-sidebar {
+        position: static;
+      }
+      .article-cover-img {
+        height: 380px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .post-page-wrapper {
+        width: 100%;
+        padding: 0 1rem;
+        margin-top: 1.5rem;
+      }
+      .article-main-card {
+        padding: 1.75rem 1.25rem;
+      }
+      .article-cover-img {
+        height: 240px;
+      }
+      .article-title-heading {
+        font-size: 1.75rem;
+      }
+      .article-body-content {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .article-body-content pre {
+        padding: 1rem;
+      }
+      .sidebar-widget {
+        padding: 1.5rem 1.25rem;
+      }
     }
   </style>
 
@@ -120,7 +399,7 @@
 </head>
 <body class="blueprint-grid">
 
-  <!-- Top Announcement -->
+  <!-- Üst Slogan Bandı -->
   <header class="top-announcement">
     <div class="container">
       <div class="top-slogan-tag">
@@ -129,7 +408,7 @@
       </div>
       <div class="top-contacts">
         <a href="tel:+905374686302" class="top-contact-link"><span>📞 0537 468 63 02</span></a>
-        <a href="../admin/" class="top-contact-link" style="color: var(--accent-bronze-light);"><span>⚙️ Panel</span></a>
+        <a href="mailto:zb.ercan.rep@gmail.com" class="top-contact-link"><span>✉️ zb.ercan.rep@gmail.com</span></a>
       </div>
     </div>
   </header>
@@ -154,49 +433,142 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="index.html" class="btn btn-secondary">← Tüm Yazılar</a>
+        <a href="https://wa.me/905374686302?text=Merhaba%20Ercan%20Bey,%20web%20sitenizden%20ula%C5%9F%C4%B1yorum." target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>WhatsApp Teklif Al</span>
+        </a>
       </div>
     </div>
   </nav>
 
-  <!-- Main Article Container -->
-  <main class="article-container">
-    <article id="articleContent">
-      <div class="article-header">
-        <div class="article-meta-row">
-          <span id="articleDate">📅 ...</span>
-          <span>•</span>
-          <span id="articleCategory">🏷️ ...</span>
-          <span>•</span>
-          <a id="rawMdLink" href="#" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">📄 Markdown Görüntüle (.md)</a>
+  <!-- Tam Ekran / Sağa Sola Yaslanan Geniş Wrapper -->
+  <div class="post-page-wrapper">
+    <!-- Breadcrumb -->
+    <div class="post-breadcrumbs">
+      <a href="../index.html">Ana Sayfa</a>
+      <span>/</span>
+      <a href="index.html">Blog</a>
+      <span>/</span>
+      <span id="breadcrumbTitle" style="color: #fff;">Makale</span>
+    </div>
+
+    <!-- 2 Kolonlu Geniş Layout -->
+    <div class="post-layout-grid">
+      <!-- SOL KOLON: Ana Makale Kartı -->
+      <main class="article-main-card">
+        <header class="article-header">
+          <div class="article-top-meta">
+            <span class="article-badge-category" id="articleCategory">🏷️ Mühendislik</span>
+            <div class="article-meta-info">
+              <span id="articleDate">📅 ...</span>
+              <span>•</span>
+              <span>⏱️ 5 dk okuma</span>
+              <span>•</span>
+              <a id="rawMdLink" href="#" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">📄 Raw .md</a>
+            </div>
+          </div>
+
+          <h1 class="article-title-heading" id="articleTitle">Makale Yükleniyor...</h1>
+
+          <!-- Tag / Etiketler Ekranı (Sayfa Üstü Yatay Etiket Barı) -->
+          <div class="article-tag-strip" id="articleHeaderTags">
+            <!-- Dinamik doldurulacak -->
+          </div>
+        </header>
+
+        <!-- Kapak Resmi -->
+        <img id="articleCover" src="../assets/images/hero-cad.jpg" alt="Makale Kapak Resmi" class="article-cover-img" style="display: none;">
+
+        <!-- Markdown İçeriği -->
+        <div id="articleBody" class="article-body-content">
+          <p style="color: var(--text-muted);">İçerik yükleniyor, lütfen bekleyiniz...</p>
         </div>
-        <h1 id="articleTitle" style="font-size: 2.2rem; line-height: 1.3;">Yazı Yükleniyor...</h1>
-      </div>
 
-      <img id="articleCover" src="../assets/images/hero-cad.jpg" alt="Kapak Görseli" class="article-cover" style="display: none;">
+        <!-- Yazı Sonu WhatsApp CTA -->
+        <div style="background: rgba(10, 14, 20, 0.7); border: 1px solid var(--border-active); border-radius: var(--radius-md); padding: 2rem; margin-top: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+          <div>
+            <h4 style="font-size: 1.25rem; color: #fff;">Bu makale veya projeniz hakkında sorunuz mu var?</h4>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin-top: 0.35rem;">
+              Makine Mühendisi Ercan Bölükbaşı ile hemen WhatsApp üzerinden teknik görüşme başlatın.
+            </p>
+          </div>
+          <a href="https://wa.me/905374686302?text=Merhaba%20Ercan%20Bey,%20web%20sitenizdeki%20yaz%C4%B1n%C4%B1z%20hakk%C4%B1nda%20dan%C4%B1%C5%9Fmak%20istiyorum." 
+             target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>WhatsApp İle İletişime Geç</span>
+          </a>
+        </div>
+      </main>
 
-      <div id="articleBody" class="article-body">
-        <p style="color: var(--text-muted);">İçerik yükleniyor, lütfen bekleyiniz...</p>
-      </div>
-
-      <div id="articleTags" class="article-tags-wrap" style="display: none;"></div>
-
-      <!-- Yazar & WhatsApp İletişim Kutusu -->
-      <div style="background: var(--bg-card); border: 1px solid var(--border-active); border-radius: var(--radius-md); padding: 2rem; margin-top: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
-        <div>
-          <h4 style="font-size: 1.2rem; color: #fff;">Bu konu hakkında projeniz mi var?</h4>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
-            Makine Mühendisi Ercan Bölükbaşı ile hemen WhatsApp üzerinden teknik detayları görüşün.
+      <!-- SAĞ KOLON: Tag / Etiket Ekranı & Sidebar Bileşenleri -->
+      <aside class="post-sidebar">
+        <!-- 1. Yazar Kartı -->
+        <div class="sidebar-widget">
+          <div class="author-card-flex">
+            <div class="author-avatar">EB</div>
+            <div>
+              <div class="author-name">Ercan Bölükbaşı</div>
+              <div class="author-role">Makine Mühendisi</div>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.25rem;">
+            10 yılı aşkın sektörel tecrübesiyle 3D parametrik modelleme, sac büküm açınımları ve talaşlı imalat süreçlerinde anahtar teslim çözümler sunar.
           </p>
+          <a href="../index.html#iletisim" class="btn btn-secondary" style="width: 100%; font-size: 0.85rem;">
+            <span>Yazarla İletişime Geç</span>
+          </a>
         </div>
-        <a href="https://wa.me/905374686302?text=Merhaba%20Ercan%20Bey,%20blogunuzdaki%20yaz%C4%B1n%C4%B1z%C4%B1%20okudum%20ve%20projemiz%20hakk%C4%B1nda%20dan%C4%B1%C5%9Fmak%20istiyorum." 
-           target="_blank" rel="noopener" class="btn btn-whatsapp">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          <span>WhatsApp'tan Danışın</span>
-        </a>
-      </div>
-    </article>
-  </main>
+
+        <!-- 2. ETİKETLER EKRANI (TAG CLOUD WIDGET) -->
+        <div class="sidebar-widget">
+          <div class="sidebar-widget-title">
+            <span>🏷️</span>
+            <span>Etiketler & Konu Başlıkları</span>
+          </div>
+          <div class="tag-cloud-grid" id="sidebarTagCloud">
+            <!-- Dinamik Etiketler -->
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>SacBükümü</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>KFaktörü</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>AbkantPres</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>Talaşlıİmalat</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>CNCİşleme</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>DFMMaliyet</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>SolidWorks</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>Prototip</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>MekanikTasarım</a>
+            <a href="index.html" class="tag-cloud-item"><span class="tag-hash">#</span>PaslanmazÇelik</a>
+          </div>
+        </div>
+
+        <!-- 3. Hızlı WhatsApp Teklif Widget'ı -->
+        <div class="sidebar-widget" style="border-color: rgba(37, 211, 102, 0.35); background: linear-gradient(180deg, rgba(37, 211, 102, 0.08) 0%, rgba(18, 26, 37, 0.9) 100%);">
+          <div style="font-size: 0.78rem; font-family: var(--font-mono); color: #86efac; font-weight: 700; margin-bottom: 0.4rem;">
+            DOĞRUDAN MÜHENDİS HATTI
+          </div>
+          <h4 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.75rem;">Teknik Çiziminizi Gönderin</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+            STEP, DXF veya PDF çizimlerinizi WhatsApp üzerinden paylaşarak aynı gün içinde maliyet ve imalat analizi alın.
+          </p>
+          <a href="https://wa.me/905374686302?text=Merhaba%20Ercan%20Bey,%20teknik%20%C3%A7izimimiz%20i%C3%A7in%20teklif%20almak%20istiyoruz." 
+             target="_blank" rel="noopener" class="btn btn-whatsapp" style="width: 100%;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>0537 468 63 02</span>
+          </a>
+        </div>
+
+        <!-- 4. Diğer Teknik Makaleler -->
+        <div class="sidebar-widget">
+          <div class="sidebar-widget-title">
+            <span>📚</span>
+            <span>Diğer Teknik Makaleler</span>
+          </div>
+          <div class="related-posts-list" id="relatedPostsList">
+            <!-- Dinamik doldurulacak -->
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
 
   <!-- Sol Altta Sabit WhatsApp Butonu -->
   <aside class="sticky-whatsapp-left" aria-label="WhatsApp İletişim">
@@ -225,6 +597,31 @@
       const rawMdLink = document.getElementById('rawMdLink');
       if (rawMdLink) rawMdLink.href = mdPath;
 
+      // 1. İlgili Yazıları Çekme
+      try {
+        const postsRes = await fetch('../content/posts/posts.json');
+        if (postsRes.ok) {
+          const allPosts = await postsRes.json();
+          const relatedContainer = document.getElementById('relatedPostsList');
+          if (relatedContainer) {
+            relatedContainer.innerHTML = '';
+            allPosts.filter(p => p.slug !== slug).forEach(p => {
+              const a = document.createElement('a');
+              a.href = `post.html?slug=${p.slug}`;
+              a.className = 'related-post-link';
+              a.innerHTML = `
+                <div class="related-post-title">${escapeHtml(p.title)}</div>
+                <div class="related-post-meta">📅 ${p.date} • 🏷️ ${p.category}</div>
+              `;
+              relatedContainer.appendChild(a);
+            });
+          }
+        }
+      } catch (e) {
+        console.debug('Related posts fetch error', e);
+      }
+
+      // 2. Makaleyi Yükleme ve Render
       try {
         const response = await fetch(mdPath);
         if (!response.ok) throw new Error('Makale bulunamadı: ' + response.statusText);
@@ -234,7 +631,7 @@
         let bodyMarkdown = text;
         const frontmatterMatch = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
 
-        let metadata = {};
+        let metadata = { tags: [] };
         if (frontmatterMatch) {
           const yamlBlock = frontmatterMatch[1];
           bodyMarkdown = frontmatterMatch[2];
@@ -244,17 +641,28 @@
             if (colonIndex > -1) {
               const key = line.slice(0, colonIndex).trim();
               let value = line.slice(colonIndex + 1).trim();
-              if (value.startsWith('"') && value.endsWith('"')) {
-                value = value.slice(1, -1);
+
+              if (key === 'tags') {
+                try {
+                  // JSON array format [a, b, c]
+                  metadata.tags = JSON.parse(value.replace(/'/g, '"'));
+                } catch {
+                  metadata.tags = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim());
+                }
+              } else {
+                if (value.startsWith('"') && value.endsWith('"')) {
+                  value = value.slice(1, -1);
+                }
+                metadata[key] = value;
               }
-              metadata[key] = value;
             }
           });
         }
 
-        // Başlık, Tarih, Kategori Güncelleme
+        // Başlık, Tarih, Kategori
         const title = metadata.title || 'Mühendislik Makalesi';
         document.getElementById('pageTitle').textContent = `${title} | 3D Tasarım İmalat`;
+        document.getElementById('breadcrumbTitle').textContent = title;
         document.getElementById('articleTitle').textContent = title;
         document.getElementById('articleDate').textContent = `📅 ${metadata.date || '2026'}`;
         document.getElementById('articleCategory').textContent = `🏷️ ${metadata.category || 'Mühendislik'}`;
@@ -263,13 +671,25 @@
           document.getElementById('pageDesc').setAttribute('content', metadata.description);
         }
 
-        // Kapak Görseli
+        // Kapak Resmi
         const coverImg = document.getElementById('articleCover');
         if (metadata.image) {
           coverImg.src = metadata.image.startsWith('http') || metadata.image.startsWith('../') 
             ? metadata.image 
             : '../' + metadata.image;
           coverImg.style.display = 'block';
+        }
+
+        // Tag / Etiketler Ekranı (Üst Şerit)
+        const headerTagsContainer = document.getElementById('articleHeaderTags');
+        if (headerTagsContainer && metadata.tags && metadata.tags.length > 0) {
+          headerTagsContainer.innerHTML = '';
+          metadata.tags.forEach(t => {
+            const span = document.createElement('span');
+            span.className = 'tag-pill';
+            span.innerHTML = `<strong>#</strong>${escapeHtml(t)}`;
+            headerTagsContainer.appendChild(span);
+          });
         }
 
         // Marked ile Markdown Render
@@ -283,11 +703,16 @@
         document.getElementById('articleBody').innerHTML = `
           <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #fca5a5; padding: 1.5rem; border-radius: 8px;">
             <h3>Yazı Yüklenemedi</h3>
-            <p>Seçilen blog makalesi bulunamadı veya henüz yayımlanmadı. <a href="index.html" style="color: #fff; text-decoration: underline;">Blog listesine dönün.</a></p>
+            <p>Seçilen blog makalesi bulunamadı. <a href="index.html" style="color: #fff; text-decoration: underline;">Blog listesine dönün.</a></p>
           </div>
         `;
       }
     });
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
   </script>
 </body>
 </html>

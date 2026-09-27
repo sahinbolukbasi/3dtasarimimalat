@@ -972,19 +972,37 @@ a {
 .contact-detail-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
 }
 
 .contact-detail-item {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  padding: 1.15rem 1.4rem;
+  background: rgba(10, 14, 20, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.contact-detail-item:hover {
+  border-color: var(--border-active);
+  background: rgba(224, 122, 44, 0.06);
+  transform: translateY(-2px);
+}
+
+.contact-detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
 }
 
 .contact-icon-bubble {
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   border-radius: var(--radius-md);
   background: rgba(224, 122, 44, 0.12);
   border: 1px solid rgba(224, 122, 44, 0.25);
@@ -992,26 +1010,33 @@ a {
   align-items: center;
   justify-content: center;
   color: var(--accent-bronze-light);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
+  flex-shrink: 0;
 }
 
 .contact-icon-bubble.whatsapp {
   background: rgba(37, 211, 102, 0.12);
-  border-color: rgba(37, 211, 102, 0.3);
+  border-color: rgba(37, 211, 102, 0.35);
   color: var(--whatsapp-color);
 }
 
 .contact-detail-label {
-  font-size: 0.78rem;
+  display: block;
+  font-size: 0.76rem;
   color: var(--text-muted);
   text-transform: uppercase;
   font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
 }
 
 .contact-detail-value {
-  font-size: 1.05rem;
-  font-weight: 600;
+  display: block;
+  font-size: 1.12rem;
+  font-weight: 700;
   color: #fff;
+  letter-spacing: -0.01em;
+  word-break: break-all;
 }
 
 .contact-form-panel {
@@ -1060,9 +1085,9 @@ textarea.form-control {
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 /* Sol Altta WhatsApp Sabit Butonu (Kullanıcı İsteği: sol altta whatsap iconu koy) */
