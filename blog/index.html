@@ -200,6 +200,94 @@
   </footer>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      syncBlogSettings();
+      loadAllBlogPosts();
+    });
+
+    async function syncBlogSettings() {
+      try {
+        const res = await fetch(`../content/settings.json?t=${Date.now()}`);
+        if (!res.ok) return;
+        const settings = await res.json();
+        if (settings.phone) {
+          document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+            a.href = `tel:${settings.phone.replace(/[^0-9+]/g, '')}`;
+            a.textContent = `📞 ${settings.phone}`;
+          });
+        }
+        if (settings.email) {
+          document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+            a.href = `mailto:${settings.email}`;
+            a.textContent = `✉️ ${settings.email}`;
+          });
+        }
+        if (settings.whatsapp) {
+          const clean = settings.whatsapp.replace(/[^0-9]/g, '');
+          const full = clean.startsWith('90') ? clean : (clean.startsWith('0') ? '9' + clean : '90' + clean);
+          document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+            a.href = `https://wa.me/${full}`;
+          });
+        }
+      } catch (e) {
+        console.debug('Blog settings sync error', e);
+      }
+    }
+
+    async function loadAllBlogPosts() {
+      const container = document.getElementById('blogPostsGrid');
+      if (!container) return;
+
+      try {
+        const res = await fetch(`../content/posts/posts.json?t=${Date.now()}`);
+        if (!res.ok) return;
+        const posts = await res.json();
+
+        if (posts && posts.length > 0) {
+          container.innerHTML = '';
+          posts.forEach(post => {
+            const article = document.createElement('article');
+            article.className = 'blog-card';
+            article.setAttribute('data-category', post.category || 'Mühendislik');
+
+            const tagsHtml = (post.tags && post.tags.length > 0)
+              ? `<div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem;">
+                  ${post.tags.slice(0, 3).map(t => `<span style="background: rgba(224, 122, 44, 0.1); border: 1px solid rgba(224, 122, 44, 0.25); color: var(--accent-bronze-light); padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.72rem; font-family: var(--font-mono);">#${escapeHtml(t)}</span>`).join('')}
+                 </div>`
+              : '';
+
+            article.innerHTML = `
+              <div class="blog-thumb">
+                <img src="${post.image.startsWith('../') ? post.image : '../' + post.image}" alt="${escapeHtml(post.title)}" loading="lazy">
+              </div>
+              <div class="blog-content">
+                <div class="blog-meta">
+                  <span>📅 ${post.date}</span>
+                  <span>•</span>
+                  <span>🏷️ ${post.category || 'Mühendislik'}</span>
+                </div>
+                <h2 class="blog-card-title">${escapeHtml(post.title)}</h2>
+                <p class="blog-card-desc">${escapeHtml(post.description)}</p>
+                ${tagsHtml}
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 1rem;">
+                  <a href="post.html?slug=${post.slug}" class="blog-read-more">Makaleyi Oku →</a>
+                  <a href="../content/posts/${post.slug}.md" target="_blank" style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">[Raw .md]</a>
+                </div>
+              </div>
+            `;
+            container.appendChild(article);
+          });
+        }
+      } catch (err) {
+        console.debug('Dynamic blog load error, fallback used', err);
+      }
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
     // Basit Kategori Filtreleme
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
