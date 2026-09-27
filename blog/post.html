@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title id="pageTitle">Makale Yükleniyor... | 3D Tasarım İmalat</title>
+  <meta name="description" id="pageDesc" content="Mühendislik ve imalat teknik makaleleri.">
+  <meta name="author" content="Makine Mühendisi Ercan Bölükbaşı">
+
+  <!-- Marked.js CDN for Client-side Markdown Rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .article-container {
+      max-width: 840px;
+      margin: 3rem auto 6rem auto;
+      padding: 0 1.5rem;
+    }
+    .article-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 2rem;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+    }
+    .article-cover {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border-subtle);
+    }
+    /* Markdown Body Typography */
+    .article-body {
+      color: #e2e8f0;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .article-body h1, .article-body h2, .article-body h3 {
+      color: #fff;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .article-body h2 {
+      font-size: 1.6rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+      color: var(--accent-bronze-light);
+    }
+    .article-body p {
+      margin-bottom: 1.5rem;
+      color: #cbd5e1;
+    }
+    .article-body ul, .article-body ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: #cbd5e1;
+    }
+    .article-body li {
+      margin-bottom: 0.5rem;
+    }
+    .article-body blockquote {
+      border-left: 4px solid var(--accent-bronze);
+      padding: 0.75rem 1.25rem;
+      background: rgba(224, 122, 44, 0.08);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: #fed7aa;
+    }
+    .article-body code {
+      font-family: var(--font-mono);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--accent-cyan);
+    }
+    .article-body pre {
+      background: #0b1118;
+      border: 1px solid var(--border-subtle);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+    .article-tags-wrap {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .article-tag {
+      background: rgba(224, 122, 44, 0.1);
+      border: 1px solid rgba(224, 122, 44, 0.25);
+      color: var(--accent-bronze-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script src="../assets/js/analytics.js"></script>
+</head>
+<body class="blueprint-grid">
+
+  <!-- Top Announcement -->
+  <header class="top-announcement">
+    <div class="container">
+      <div class="top-slogan-tag">
+        <span class="pulse-dot"></span>
+        <span>“Doğru Zamanda, Doğru Fiyatta Mühendislik Çözümleri.”</span>
+      </div>
+      <div class="top-contacts">
+        <a href="tel:+905374686302" class="top-contact-link"><span>📞 0537 468 63 02</span></a>
+        <a href="../admin/" class="top-contact-link" style="color: var(--accent-bronze-light);"><span>⚙️ Panel</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-badge-icon">3D</div>
+        <div class="brand-name-group">
+          <span class="brand-title">3DTASARIMİMALAT</span>
+          <span class="brand-subtitle">Mühendislik · Tasarım · Üretim</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="../index.html" class="nav-link">Ana Sayfa</a></li>
+        <li><a href="../index.html#hakkimda" class="nav-link">Hakkımda</a></li>
+        <li><a href="../index.html#hizmetler" class="nav-link">Hizmetler</a></li>
+        <li><a href="index.html" class="nav-link active">Blog</a></li>
+        <li><a href="../index.html#iletisim" class="nav-link">İletişim</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary">← Tüm Yazılar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Article Container -->
+  <main class="article-container">
+    <article id="articleContent">
+      <div class="article-header">
+        <div class="article-meta-row">
+          <span id="articleDate">📅 ...</span>
+          <span>•</span>
+          <span id="articleCategory">🏷️ ...</span>
+          <span>•</span>
+          <a id="rawMdLink" href="#" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">📄 Markdown Görüntüle (.md)</a>
+        </div>
+        <h1 id="articleTitle" style="font-size: 2.2rem; line-height: 1.3;">Yazı Yükleniyor...</h1>
+      </div>
+
+      <img id="articleCover" src="../assets/images/hero-cad.jpg" alt="Kapak Görseli" class="article-cover" style="display: none;">
+
+      <div id="articleBody" class="article-body">
+        <p style="color: var(--text-muted);">İçerik yükleniyor, lütfen bekleyiniz...</p>
+      </div>
+
+      <div id="articleTags" class="article-tags-wrap" style="display: none;"></div>
+
+      <!-- Yazar & WhatsApp İletişim Kutusu -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-active); border-radius: var(--radius-md); padding: 2rem; margin-top: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+        <div>
+          <h4 style="font-size: 1.2rem; color: #fff;">Bu konu hakkında projeniz mi var?</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
+            Makine Mühendisi Ercan Bölükbaşı ile hemen WhatsApp üzerinden teknik detayları görüşün.
+          </p>
+        </div>
+        <a href="https://wa.me/905374686302?text=Merhaba%20Ercan%20Bey,%20blogunuzdaki%20yaz%C4%B1n%C4%B1z%C4%B1%20okudum%20ve%20projemiz%20hakk%C4%B1nda%20dan%C4%B1%C5%9Fmak%20istiyorum." 
+           target="_blank" rel="noopener" class="btn btn-primary">
+          <span>💬 WhatsApp'tan Danışın</span>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <!-- Sol Altta Sabit WhatsApp Butonu -->
+  <aside class="sticky-whatsapp-left" aria-label="WhatsApp İletişim">
+    <a href="https://wa.me/905374686302?text=Merhaba%20Ercan%20Bey,%20web%20sitenizden%20ula%C5%9F%C4%B1yorum." 
+       target="_blank" 
+       rel="noopener" 
+       class="whatsapp-float-btn" 
+       title="WhatsApp'tan Yazın">
+      💬
+    </a>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container" style="text-align: center;">
+      <p>© 2026 3dtasarimimalat.com - Makine Mühendisi Ercan Bölükbaşı. “Doğru Zamanda, Doğru Fiyatta Mühendislik Çözümleri.”</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get('slug') || 'sac-metal-bukumunde-k-faktoru';
+      const mdPath = `../content/posts/${slug}.md`;
+
+      const rawMdLink = document.getElementById('rawMdLink');
+      if (rawMdLink) rawMdLink.href = mdPath;
+
+      try {
+        const response = await fetch(mdPath);
+        if (!response.ok) throw new Error('Makale bulunamadı: ' + response.statusText);
+        const text = await response.text();
+
+        // Frontmatter Parsing (--- ... ---)
+        let bodyMarkdown = text;
+        const frontmatterMatch = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+
+        let metadata = {};
+        if (frontmatterMatch) {
+          const yamlBlock = frontmatterMatch[1];
+          bodyMarkdown = frontmatterMatch[2];
+
+          yamlBlock.split('\n').forEach(line => {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > -1) {
+              const key = line.slice(0, colonIndex).trim();
+              let value = line.slice(colonIndex + 1).trim();
+              if (value.startsWith('"') && value.endsWith('"')) {
+                value = value.slice(1, -1);
+              }
+              metadata[key] = value;
+            }
+          });
+        }
+
+        // Başlık, Tarih, Kategori Güncelleme
+        const title = metadata.title || 'Mühendislik Makalesi';
+        document.getElementById('pageTitle').textContent = `${title} | 3D Tasarım İmalat`;
+        document.getElementById('articleTitle').textContent = title;
+        document.getElementById('articleDate').textContent = `📅 ${metadata.date || '2026'}`;
+        document.getElementById('articleCategory').textContent = `🏷️ ${metadata.category || 'Mühendislik'}`;
+
+        if (metadata.description) {
+          document.getElementById('pageDesc').setAttribute('content', metadata.description);
+        }
+
+        // Kapak Görseli
+        const coverImg = document.getElementById('articleCover');
+        if (metadata.image) {
+          coverImg.src = metadata.image.startsWith('http') || metadata.image.startsWith('../') 
+            ? metadata.image 
+            : '../' + metadata.image;
+          coverImg.style.display = 'block';
+        }
+
+        // Marked ile Markdown Render
+        if (typeof marked !== 'undefined') {
+          document.getElementById('articleBody').innerHTML = marked.parse(bodyMarkdown);
+        } else {
+          document.getElementById('articleBody').innerText = bodyMarkdown;
+        }
+
+      } catch (err) {
+        document.getElementById('articleBody').innerHTML = `
+          <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #fca5a5; padding: 1.5rem; border-radius: 8px;">
+            <h3>Yazı Yüklenemedi</h3>
+            <p>Seçilen blog makalesi bulunamadı veya henüz yayımlanmadı. <a href="index.html" style="color: #fff; text-decoration: underline;">Blog listesine dönün.</a></p>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+================================================================================
+3DTASARIMIMALAT.COM - GITHUB PAGES DNS KAYITLARI (DNS RECORDS)
+================================================================================
+
+Domaininizin bağlı olduğu DNS / Domain yönetim panelinde (Cloudflare, GoDaddy, 
+Natro, Turhost, İsimtescil, Google Domains vb.) aşağıdaki kayıtları ekleyiniz:
+
+--------------------------------------------------------------------------------
+1. A KAYITLARI (Root / Apex Domain: 3dtasarimimalat.com)
+--------------------------------------------------------------------------------
+Tür (Type) | Ad (Host / Name) | Değer / Hedef (Target IP) | TTL
+--------------------------------------------------------------------------------
+A          | @                | 185.199.108.153           | Otomatik / 3600
+A          | @                | 185.199.109.153           | Otomatik / 3600
+A          | @                | 185.199.110.153           | Otomatik / 3600
+A          | @                | 185.199.111.153           | Otomatik / 3600
+
+* Not: DNS paneliniz "@" karakterini kabul etmiyorsa boş bırakınız ya da "3dtasarimimalat.com" yazınız.
+
+
+--------------------------------------------------------------------------------
+2. CNAME KAYDI (Alt Alan Adı: www.3dtasarimimalat.com)
+--------------------------------------------------------------------------------
+Tür (Type) | Ad (Host / Name) | Değer / Hedef (Target)       | TTL
+--------------------------------------------------------------------------------
+CNAME      | www              | sahinbolukbasi.github.io.    | Otomatik / 3600
+
+* Not: Hedefin sonundaki noktayı (.) bazı paneller otomatik ekler, hata verirse "sahinbolukbasi.github.io" şeklinde yazınız.
+
+
+--------------------------------------------------------------------------------
+3. AAAA KAYITLARI (IPv6 Desteği - Opsiyonel ama Tavsiye Edilir)
+--------------------------------------------------------------------------------
+Tür (Type) | Ad (Host / Name) | Değer / Hedef (IPv6)         | TTL
+--------------------------------------------------------------------------------
+AAAA       | @                | 2606:50c0:8000::153          | Otomatik / 3600
+AAAA       | @                | 2606:50c0:8001::153          | Otomatik / 3600
+AAAA       | @                | 2606:50c0:8002::153          | Otomatik / 3600
+AAAA       | @                | 2606:50c0:8003::153          | Otomatik / 3600
+
+
+================================================================================
+GITHUB REPOSU AYARLARI (GITHUB PAGES AKTİFLEŞTİRME)
+================================================================================
+1. https://github.com/sahinbolukbasi/3dtasarimimalat/settings/pages adresine gidin.
+2. "Build and deployment" -> Source kısmında "Deploy from a branch" seçin.
+3. Branch olarak "main" ve klasör olarak "/ (root)" seçip "Save" butonuna tıklayın.
+4. "Custom domain" kutusuna "3dtasarimimalat.com" yazıp kaydedin (CNAME dosyası otomatik eşleşecektir).
+5. DNS yönlendirmesi oturduktan sonra (genellikle 5-15 dk), "Enforce HTTPS" kutucuğunu işaretleyin.
+================================================================================

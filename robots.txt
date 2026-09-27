@@ -1,0 +1,25 @@
+# Robots.txt for 3dtasarimimalat.com
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# AI Crawlers - Explicitly welcome to index documentation and LLM manifests
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /content/posts/
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /content/posts/
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://3dtasarimimalat.com/sitemap.xml

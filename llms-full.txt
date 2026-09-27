@@ -1,0 +1,48 @@
+# 3dtasarimimalat.com - KAPSAMLI MÜHENDİSLİK VE İMALAT REHBERİ (LLMS-FULL)
+
+## Genel Bakış
+- Firma / Marka: 3dtasarimimalat.com
+- Kurucu / Uzman: Makine Mühendisi Ercan Bölükbaşı
+- Tecrübe: 10 yılı aşkın sektörel deneyim
+- Ana İlke: Yalnızca çizim teslim etmek değil; üretilebilir, maliyet açısından optimize edilmiş ve sahada sorunsuz çalışan çözümler sunmak.
+- Sloganlar:
+  1. “Doğru Zamanda, Doğru Fiyatta Mühendislik Çözümleri.”
+  2. “Fikirden Üretime, Güvenle.”
+  3. “Uygun Fiyata, Doğru Zamanlama.”
+
+## İletişim Kanalları
+- WhatsApp: 0537 468 63 02 / Uluslararası: +90 537 468 63 02
+- Doğrudan WhatsApp Sohbet: https://wa.me/905374686302
+- E-Posta: zb.ercan.rep@gmail.com
+- Lokasyon / Kapsam: Türkiye geneli ve uluslararası uzaktan teknik mühendislik desteği, Marmara bölgesinde yerinde danışmanlık.
+
+## Detaylı Hizmet Maddeleri
+
+### 1. Tasarım & Mühendislik
+- 2D Teknik Çizim: ISO ve ASME normlarına uygun toleranslandırma, kesit görünümleri, kaynak sembolleri, yüzey işleme pürüzlülükleri (Ra).
+- 3D Modelleme ve Tasarım: Parametrik katı modelleme, montaj çakışma analizleri, kinematik hareket simülasyonları.
+- Özel Ürün Tasarımı: Müşterinin elindeki eskiz, numune veya fikirden yola çıkarak fonksiyonel endüstriyel ürün tasarımı.
+- Mühendislik Hesaplamaları: Sonlu Elemanlar Analizi (FEA), statik dayanım hesapları, mil-rulman-dişli ömür hesaplamaları.
+- Doğru Malzeme Seçimi: İmalat ortamı, korozyon, aşınma ve bütçe faktörlerine göre en optimize alaşım seçimi (St52, AISI 304, AISI 316, Al 6082, Al 7075, POM, Delrin vb.).
+- Ürün Maliyetlendirme: DFM (Design for Manufacturing) prensipleriyle talaş kaldırma süresini ve malzeme firesini minimize etme.
+
+### 2. Üretime Hazırlık
+- İmalat Resmi: Tezgâh operatörünün ek soru sormasına gerek bırakmayan net toleranslı çalışma çizimleri.
+- Sac Büküm Açınımı (Flat Pattern): Abkant pres takım yarıçapı ve malzeme K-faktörüne göre milimetrik açınım.
+- Dosya Parçalama (DXF / DWG): Fiber lazer ve su jeti kesim tezgâhları için tekil temiz konturlar, delik çapı optimizasyonu.
+- Çizim Formatları: STEP (.stp), IGES (.igs), Parasolid (.x_t), DXF, DWG, 3D PDF ve 2D PDF.
+
+### 3. Üretim & İmalat Çözümleri
+- Paslanmaz Çelik İmalatı: Hijyenik gıda hatları, kimyasal tanklar, paslanmaz boru ve profil konstrüksiyonları.
+- Elektrostatik Toz Boya: Yüksek korozyon dayanımlı fırın boya uygulamaları.
+- Prototip (Numune) Üretimi: Seri üretime girmeden önce riskleri sıfırlayan ilk çalışan numune.
+- Talaşlı İmalat: CNC torna, 3-4-5 eksen dikey işleme merkezleri ve tel erezyon işleri.
+
+### 4. Danışmanlık ve Eğitim
+- Yüz yüze proje toplantıları ve yerinde saha tespiti.
+- İmalat personeli ve teknik ofis için teknik resim ve CAD modelleme eğitimleri.
+
+## Blog ve Teknik Rehber Yazıları
+1. Sac Metal Bükümünde K-Faktörü: /content/posts/sac-metal-bukumunde-k-faktoru.md
+2. Talaşlı İmalatta Maliyet Optimizasyonu: /content/posts/talasli-imalatta-maliyet-optimizasyonu.md
+3. Fikirden Seri Üretime 5 Adım: /content/posts/fikirden-seri-uretime-muhendislik-adimlari.md

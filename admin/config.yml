@@ -1,0 +1,64 @@
+# ==============================================================================
+# Sveltia CMS Configuration for 3dtasarimimalat.com
+# Git-based headless CMS for GitHub Pages
+# ==============================================================================
+
+# Backend Configuration
+# GitHub Pages için kullanıcı/repo adınızı giriniz (örnek: kullaniciadi/ercan-web)
+backend:
+  name: github
+  repo: sahinbolukbasi/3dtasarimimalat
+  branch: main
+  base_url: https://api.github.com
+
+# Yerel geliştirme ortamı desteği (npx sveltia-cms-auth veya Decap proxy ile)
+local_backend: true
+
+# Medya Yolları
+media_folder: "assets/images"
+public_folder: "assets/images"
+
+# Gösterim dili
+locale: 'tr'
+
+# Koleksiyonlar
+collections:
+  # 1. Blog Yazıları (Markdown Desteği)
+  - name: "posts"
+    label: "Blog Yazıları"
+    label_singular: "Blog Yazısı"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    editor:
+      preview: true
+    fields:
+      - { label: "Yazı Başlığı", name: "title", widget: "string" }
+      - { label: "Slug / URL Bağlantısı", name: "slug", widget: "string" }
+      - { label: "Yayın Tarihi", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Kategori", name: "category", widget: "select", options: ["Tasarım & Mühendislik", "Sac Metal", "Talaşlı İmalat", "Ürün Geliştirme", "DFM & Maliyet"] }
+      - { label: "Kapak Görseli", name: "image", widget: "image", default: "assets/images/cad-drafting.jpg" }
+      - { label: "Kısa Özet (Meta Description)", name: "description", widget: "text" }
+      - { label: "Etiketler", name: "tags", widget: "list", default: ["Mühendislik", "Tasarım", "İmalat"] }
+      - { label: "Yazı İçeriği (Markdown)", name: "body", widget: "markdown" }
+
+  # 2. Site Ayarları & İletişim Bilgileri
+  - name: "settings"
+    label: "Site Ayarları"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - label: "İletişim & Genel Ayarlar"
+        name: "general"
+        file: "content/settings.json"
+        fields:
+          - { label: "Firma / Site Adı", name: "site_name", widget: "string", default: "3D Tasarım & İmalat" }
+          - { label: "Mühendis Unvanı", name: "engineer_name", widget: "string", default: "Makine Mühendisi Ercan Bölükbaşı" }
+          - { label: "Ana Slogan", name: "main_slogan", widget: "string", default: "Doğru Zamanda, Doğru Fiyatta Mühendislik Çözümleri." }
+          - { label: "WhatsApp Numarası", name: "whatsapp", widget: "string", default: "0537 468 63 02" }
+          - { label: "Telefon", name: "phone", widget: "string", default: "+90 537 468 63 02" }
+          - { label: "E-Posta Adresi", name: "email", widget: "string", default: "zb.ercan.rep@gmail.com" }
+          - { label: "Google Analytics Ölçüm Kimliği", name: "ga_id", widget: "string", default: "G-XXXXXXXXXX" }

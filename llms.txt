@@ -1,0 +1,53 @@
+# 3D Tasarım & İmalat (3dtasarimimalat.com)
+> Doğru Zamanda, Doğru Fiyatta Mühendislik Çözümleri. Fikirden Üretime, Güvenle.
+
+3D Tasarım İmalat, Makine Mühendisi Ercan Bölükbaşı liderliğinde 10 yılı aşkın sektörel deneyimle mekanik tasarım, 2D/3D teknik çizim, talaşlı imalat, sac büküm açınımları ve prototip üretim hizmetleri sunan bir mühendislik firmasıdır.
+
+## İletişim Bilgileri
+- **Makine Mühendisi:** Ercan Bölükbaşı
+- **WhatsApp & Telefon:** +90 537 468 63 02 (0537 468 63 02)
+- **E-Posta:** zb.ercan.rep@gmail.com
+- **Web Sitesi:** https://3dtasarimimalat.com/
+- **Sloganlar:** 
+  - "Doğru Zamanda, Doğru Fiyatta Mühendislik Çözümleri."
+  - "Fikirden Üretime, Güvenle."
+  - "Uygun Fiyata, Doğru Zamanlama."
+
+## Temel Hizmetler
+
+### 1. Tasarım & Mühendislik
+- 2D Teknik Çizim (İmalat ve montaj resimleri)
+- 3D Parametrik Modelleme ve Tasarım (SolidWorks, Autodesk Inventor)
+- Özel Ürün & Makine Tasarımı
+- Mühendislik Hesaplamaları (Statik, dinamik, mukavemet ve yorulma analizleri)
+- Doğru Malzeme Seçimi ve Danışmanlığı (Çelik, alüminyum, polimerler)
+- Ürün Maliyetlendirme ve DFM (Design for Manufacturing)
+
+### 2. Üretime Hazırlık
+- İmalat Resmi Oluşturma (Toleranslandırma, yüzey işleme işaretleri)
+- Büküm Resmi Oluşturma (Sac metal bükümü, abkant K-faktörü hesapları)
+- Dosya Parçalama (Lazer/plazma kesime hazır DXF ve DWG nesting çıkarma)
+- Uluslararası Format Desteği (STEP, IGES, Parasolid, DXF, DWG, PDF)
+
+### 3. Üretim & İmalat
+- Özel Paslanmaz Çelik İmalatı (AISI 304 / 316 borulama ve şaseler)
+- Elektrostatik Fırın Boyalı İmalat
+- Numune (Prototip) Çalışmaları (Fiziksel doğrulama modelleri)
+- Talaşlı İmalat (CNC torna, CNC freze, tel erezyon) ve Kaynaklı İmalat (TIG/MIG)
+
+### 4. Danışmanlık & Eğitim
+- Yüz Yüze Proje Geliştirme Danışmanlığı (Yerinde ölçüm ve atölye desteği)
+- Genel Eğitim ve Bilgilendirme Hizmetleri
+- Tersine Mühendislik (Reverse Engineering)
+
+## Hizmet Verilen Sektörler
+- Makine İmalatı
+- Ağır Sanayi ve Çelik Konstrüksiyon
+- Ürün Geliştirme ve Girişimler
+- Proses Geliştirme, Kalıp ve Montaj Fikstürleri
+
+## Teknik Makaleler & Rehberler (Markdown formatında erişilebilir)
+- [Sac Metal Bükümünde K-Faktörü](https://3dtasarimimalat.com/content/posts/sac-metal-bukumunde-k-faktoru.md)
+- [Talaşlı İmalatta Maliyet Optimizasyonu (DFM)](https://3dtasarimimalat.com/content/posts/talasli-imalatta-maliyet-optimizasyonu.md)
+- [Fikirden Seri Üretime Mühendislik Adımları](https://3dtasarimimalat.com/content/posts/fikirden-seri-uretime-muhendislik-adimlari.md)
+- [Tam Yapay Zeka Dökümanı](https://3dtasarimimalat.com/llms-full.txt)
