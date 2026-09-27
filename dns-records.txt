@@ -1,50 +1,76 @@
 ================================================================================
-3DTASARIMIMALAT.COM - GITHUB PAGES DNS KAYITLARI (DNS RECORDS)
+CLOUDFLARE İÇİN GITHUB PAGES DNS KAYITLARI (3DTASARIMIMALAT.COM)
 ================================================================================
 
-Domaininizin bağlı olduğu DNS / Domain yönetim panelinde (Cloudflare, GoDaddy, 
-Natro, Turhost, İsimtescil, Google Domains vb.) aşağıdaki kayıtları ekleyiniz:
+Cloudflare paneline (dash.cloudflare.com -> 3dtasarimimalat.com -> DNS -> Records)
+girerek aşağıdaki kayıtları ekleyiniz.
+
+⚠️ ÇOK ÖNEMLİ CLOUDFLARE NOTU:
+1. "Proxy status" seçeneğini İLK AŞAMADA mutlaka "DNS ONLY" (Gri Bulut 🔘) yapınız!
+   (Turuncu bulut / Proxied açıkken GitHub SSL sertifikası üretemez ve hata verir.)
+2. GitHub Pages SSL sertifikasını onaylayıp site açıldıktan sonra isterseniz turuncu bulutu açabilirsiniz.
+3. Cloudflare menüsünden "SSL/TLS" sekmesine gidip modu "Full" veya "Full (Strict)" seçiniz ("Flexible" yapmayınız, döngüye girer).
 
 --------------------------------------------------------------------------------
-1. A KAYITLARI (Root / Apex Domain: 3dtasarimimalat.com)
+1. YÖNTEM: STANDART VE TAVSİYE EDİLEN KAYITLAR
 --------------------------------------------------------------------------------
-Tür (Type) | Ad (Host / Name) | Değer / Hedef (Target IP) | TTL
+
+KAYIT 1:
+- Type (Tür): A
+- Name (Ad): @ (veya 3dtasarimimalat.com)
+- IPv4 address: 185.199.108.153
+- Proxy status: DNS only (Gri Bulut)
+- TTL: Auto
+
+KAYIT 2:
+- Type (Tür): A
+- Name (Ad): @ (veya 3dtasarimimalat.com)
+- IPv4 address: 185.199.109.153
+- Proxy status: DNS only (Gri Bulut)
+- TTL: Auto
+
+KAYIT 3:
+- Type (Tür): A
+- Name (Ad): @ (veya 3dtasarimimalat.com)
+- IPv4 address: 185.199.110.153
+- Proxy status: DNS only (Gri Bulut)
+- TTL: Auto
+
+KAYIT 4:
+- Type (Tür): A
+- Name (Ad): @ (veya 3dtasarimimalat.com)
+- IPv4 address: 185.199.111.153
+- Proxy status: DNS only (Gri Bulut)
+- TTL: Auto
+
+KAYIT 5 (WWW için):
+- Type (Tür): CNAME
+- Name (Ad): www
+- Target (Hedef): sahinbolukbasi.github.io
+- Proxy status: DNS only (Gri Bulut)
+- TTL: Auto
+
+
 --------------------------------------------------------------------------------
-A          | @                | 185.199.108.153           | Otomatik / 3600
-A          | @                | 185.199.109.153           | Otomatik / 3600
-A          | @                | 185.199.110.153           | Otomatik / 3600
-A          | @                | 185.199.111.153           | Otomatik / 3600
+2. YÖNTEM: CLOUDFLARE "IMPORT DNS RECORDS" İÇİN TEK TIKLA YÜKLEME METNİ
+--------------------------------------------------------------------------------
+(Cloudflare DNS sayfasında "Manage DNS" -> "Import and Export" -> "Import" diyerek
+aşağıdaki metni .txt olarak yükleyebilirsiniz):
 
-* Not: DNS paneliniz "@" karakterini kabul etmiyorsa boş bırakınız ya da "3dtasarimimalat.com" yazınız.
+;; Cloudflare BIND Format Records for 3dtasarimimalat.com
+3dtasarimimalat.com. 3600 IN A 185.199.108.153
+3dtasarimimalat.com. 3600 IN A 185.199.109.153
+3dtasarimimalat.com. 3600 IN A 185.199.110.153
+3dtasarimimalat.com. 3600 IN A 185.199.111.153
+www.3dtasarimimalat.com. 3600 IN CNAME sahinbolukbasi.github.io.
 
 
 --------------------------------------------------------------------------------
-2. CNAME KAYDI (Alt Alan Adı: www.3dtasarimimalat.com)
+3. ADIM ADIM CLOUDFLARE + GITHUB PAGES AKTİVASYONU
 --------------------------------------------------------------------------------
-Tür (Type) | Ad (Host / Name) | Değer / Hedef (Target)       | TTL
---------------------------------------------------------------------------------
-CNAME      | www              | sahinbolukbasi.github.io.    | Otomatik / 3600
-
-* Not: Hedefin sonundaki noktayı (.) bazı paneller otomatik ekler, hata verirse "sahinbolukbasi.github.io" şeklinde yazınız.
-
-
---------------------------------------------------------------------------------
-3. AAAA KAYITLARI (IPv6 Desteği - Opsiyonel ama Tavsiye Edilir)
---------------------------------------------------------------------------------
-Tür (Type) | Ad (Host / Name) | Değer / Hedef (IPv6)         | TTL
---------------------------------------------------------------------------------
-AAAA       | @                | 2606:50c0:8000::153          | Otomatik / 3600
-AAAA       | @                | 2606:50c0:8001::153          | Otomatik / 3600
-AAAA       | @                | 2606:50c0:8002::153          | Otomatik / 3600
-AAAA       | @                | 2606:50c0:8003::153          | Otomatik / 3600
-
-
-================================================================================
-GITHUB REPOSU AYARLARI (GITHUB PAGES AKTİFLEŞTİRME)
-================================================================================
-1. https://github.com/sahinbolukbasi/3dtasarimimalat/settings/pages adresine gidin.
-2. "Build and deployment" -> Source kısmında "Deploy from a branch" seçin.
-3. Branch olarak "main" ve klasör olarak "/ (root)" seçip "Save" butonuna tıklayın.
-4. "Custom domain" kutusuna "3dtasarimimalat.com" yazıp kaydedin (CNAME dosyası otomatik eşleşecektir).
-5. DNS yönlendirmesi oturduktan sonra (genellikle 5-15 dk), "Enforce HTTPS" kutucuğunu işaretleyin.
+1. Cloudflare'de yukarıdaki 5 kaydı ekleyin ve Proxy durumunun "DNS Only" (Gri) olduğundan emin olun.
+2. Cloudflare sol menüden SSL/TLS -> "Full" seçeneğini seçin.
+3. GitHub deponuza gidin: https://github.com/sahinbolukbasi/3dtasarimimalat/settings/pages
+4. "Custom domain" kutusuna: 3dtasarimimalat.com yazıp Save deyin.
+5. Birkaç dakika sonra DNS onaylanacak ve altındaki "Enforce HTTPS" kutusu aktifleşecektir. Kutuyu işaretleyin.
 ================================================================================
