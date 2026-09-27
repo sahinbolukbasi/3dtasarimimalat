@@ -6,7 +6,13 @@
     "category": "Sac Metal",
     "image": "assets/images/cnc-fabrication.jpg",
     "description": "Abkant pres bükümlerinde doğru K-faktörü seçimi, sac açınımı çıkarırken neden hayati önem taşır? İmalatta fireyi sıfıra indiren mühendislik hesapları.",
-    "tags": ["Sac Bükümü", "Abkant Pres", "K-Faktörü", "SolidWorks"]
+    "tags": [
+      "Sac Bükümü",
+      "Abkant Pres",
+      "K-Faktörü",
+      "SolidWorks",
+      "Tasarım"
+    ]
   },
   {
     "title": "Talaşlı İmalatta Parça Maliyetini %30 Düşüren 5 Tasarım Kuralı",
@@ -15,15 +21,21 @@
     "category": "DFM & Maliyet",
     "image": "assets/images/cad-drafting.jpg",
     "description": "Gereksiz dar toleranslar, derin cep boşaltmaları ve standart dışı pahlar maliyeti nasıl katlar? İmalata Yönelik Tasarım (DFM) ile maliyet düşürme yöntemleri.",
-    "tags": ["Talaşlı İmalat", "CNC", "DFM", "Maliyet Optimizasyonu"]
+    "tags": [
+      "Talaşlı İmalat",
+      "CNC",
+      "DFM",
+      "Maliyet Optimizasyonu",
+      "Mühendislik"
+    ]
   },
   {
-    "title": "Fikirden Seri Üretime: 5 Aşamalı Başarılı Proje Yönetimi",
+    "title": "Fikirden Seri Üretime: 5 Aşamalı Başarılı Proje",
     "slug": "fikirden-seri-uretime-muhendislik-adimlari",
     "date": "2026-09-20",
     "category": "Ürün Geliştirme",
     "image": "assets/images/hero-cad.jpg",
     "description": "Eskiz aşamasından çalışan prototipe, ardından seri üretim bantlarına uzanan eksiksiz mühendislik yol haritası.",
-    "tags": ["Ürün Geliştirme", "Prototipleme", "Mühendislik", "Seri Üretim"]
+    "tags": []
   }
 ]
