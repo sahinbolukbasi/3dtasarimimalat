@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yönetim Paneli | 3D Tasarım İmalat</title>
   
+  <!-- Automatic HTTPS Enforcement for Secure Context / Sveltia CMS -->
+  <script>
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.replace('https://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
+
   <!-- Sekme Logosu (Favicon) -->
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
 
