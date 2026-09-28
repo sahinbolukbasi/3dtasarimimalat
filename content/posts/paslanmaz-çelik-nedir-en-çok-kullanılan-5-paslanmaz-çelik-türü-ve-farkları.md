@@ -1,6 +1,6 @@
 ---
 title: Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları
-slug: http://3dtasarimimalat.com/
+slug: paslanmaz-celik-nedir
 date: 2026-09-28
 category: Tasarım & Mühendislik
 image: /assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png
