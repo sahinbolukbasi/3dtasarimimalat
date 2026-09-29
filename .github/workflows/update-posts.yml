@@ -29,7 +29,7 @@ jobs:
       with:
         node-version: '20'
         
-    - name: Update posts.json
+    - name: Update posts.json and validate slugs
       run: |
         node << 'EOF'
         const fs = require('fs');
@@ -77,6 +77,12 @@ jobs:
             }
           });
           
+          // Slug'dan dosya ismini oluştur (Türkçe karakterleri İngilizce'ye çevir)
+          let expectedFilename = (metadata.slug || file.replace('.md', '')).toLowerCase()
+            .replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/i, 'i')
+            .replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u')
+            .replace(/[^a-z0-9-]/g, '-') + '.md';
+          
           return {
             title: metadata.title || 'Untitled',
             slug: metadata.slug || file.replace('.md', ''),
@@ -84,7 +90,8 @@ jobs:
             category: metadata.category || 'Mühendislik',
             image: metadata.image || 'assets/images/cad-drafting.jpg',
             description: metadata.description || '',
-            tags: metadata.tags || []
+            tags: metadata.tags || [],
+            _expectedFilename: expectedFilename
           };
         }).filter(p => p !== null);
 
@@ -94,6 +101,13 @@ jobs:
         // Write posts.json
         fs.writeFileSync(postsJsonPath, JSON.stringify(posts, null, 2) + '\n');
         console.log(`Updated posts.json with ${posts.length} posts`);
+        
+        // Check for slug/filename mismatches
+        posts.forEach(post => {
+          if (post._expectedFilename !== post.slug + '.md') {
+            console.warn(`Warning: Slug "${post.slug}" may not match filename "${post.slug}.md"`);
+          }
+        });
         EOF
         
     - name: Check if posts.json changed
