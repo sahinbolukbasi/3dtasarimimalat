@@ -1,6 +1,6 @@
 ---
 title: Paslanmaz Polisaj Nedir? Yöntemleri, Avantajları ve Kullanım Alanları
-slug: PASLANMAZ POLİSAJ NEDİR
+slug: paslanmaz-polisaj-nedir
 date: 2026-09-29
 category: Ürün Geliştirme
 image: /assets/images/ChatGPT Görseli 29 Eyl 2026 09_53_50.png
