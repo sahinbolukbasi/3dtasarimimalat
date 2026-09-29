@@ -1,7 +1,7 @@
 ---
 title: Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları
 slug: paslanmaz-celik-nedir
-date: 2026-09-28
+date: 2026-09-29
 category: Tasarım & Mühendislik
 image: /assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png
 description: Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama "paslanmaz çelik" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için
