@@ -1,0 +1,109 @@
+name: Update Blog Posts Index
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'content/posts/*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-posts-json:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Update posts.json
+      run: |
+        node << 'EOF'
+        const fs = require('fs');
+        const path = require('path');
+
+        const postsDir = './content/posts';
+        const postsJsonPath = path.join(postsDir, 'posts.json');
+
+        // Read all markdown files
+        const files = fs.readdirSync(postsDir)
+          .filter(f => f.endsWith('.md') && f !== 'posts.json');
+
+        const posts = files.map(file => {
+          const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
+          
+          // Extract frontmatter
+          const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+          if (!frontmatterMatch) return null;
+          
+          const frontmatter = frontmatterMatch[1];
+          const metadata = {};
+          
+          frontmatter.split('\n').forEach(line => {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > -1) {
+              const key = line.slice(0, colonIndex).trim();
+              let value = line.slice(colonIndex + 1).trim();
+              
+              // Remove quotes
+              if ((value.startsWith('"') && value.endsWith('"')) || 
+                  (value.startsWith("'") && value.endsWith("'"))) {
+                value = value.slice(1, -1);
+              }
+              
+              // Parse arrays
+              if (key === 'tags') {
+                try {
+                  metadata[key] = JSON.parse(value.replace(/'/g, '"'));
+                } catch {
+                  metadata[key] = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim()).filter(s => s);
+                }
+              } else {
+                metadata[key] = value;
+              }
+            }
+          });
+          
+          return {
+            title: metadata.title || 'Untitled',
+            slug: metadata.slug || file.replace('.md', ''),
+            date: metadata.date || new Date().toISOString().split('T')[0],
+            category: metadata.category || 'Mühendislik',
+            image: metadata.image || 'assets/images/cad-drafting.jpg',
+            description: metadata.description || '',
+            tags: metadata.tags || []
+          };
+        }).filter(p => p !== null);
+
+        // Sort by date (newest first)
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Write posts.json
+        fs.writeFileSync(postsJsonPath, JSON.stringify(posts, null, 2) + '\n');
+        console.log(`Updated posts.json with ${posts.length} posts`);
+        EOF
+        
+    - name: Check if posts.json changed
+      id: check_changes
+      run: |
+        if git diff --quiet content/posts/posts.json; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add content/posts/posts.json
+        git commit -m "Auto-update posts.json [skip ci]" || exit 0
+        git push
