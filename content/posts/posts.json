@@ -1,12 +1,21 @@
 [
   {
-    "title": "Paslanmaz Çelik Nedir? Türleri, Özellikleri ve Kullanım Alanları",
+    "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
     "slug": "paslanmaz-celik-nedir",
     "date": "2026-09-29",
-    "category": "Sac Metal",
-    "image": "assets/images/cnc-fabrication.jpg",
-    "description": "Paslanmaz çelik (inox) nedir? 304, 316, 430 gibi yaygın paslanmaz çelik türleri, mekanik özellikleri, korozyon direnci ve sanayi kullanım alanları hakkında kapsamlı rehber.",
-    "tags": ["Paslanmaz Çelik", "Inox", "304", "316", "430", "Sac Metal", "Korozyon"]
+    "category": "Tasarım & Mühendislik",
+    "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
+    "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
+    "tags": []
+  },
+  {
+    "title": "Paslanmaz Polisaj Nedir? Yöntemleri, Avantajları ve Kullanım Alanları",
+    "slug": "paslanmaz-polisaj-nedir",
+    "date": "2026-09-29",
+    "category": "Ürün Geliştirme",
+    "image": "/assets/images/ChatGPT Görseli 29 Eyl 2026 09_53_50.png",
+    "description": "Paslanmaz çelik, dayanıklılığı ve şık görünümüyle mutfaktan gıda tesislerine, mimariden denizciliğe kadar pek çok alanda tercih ediliyor. Ancak üretim sonrası yüzeyinde kaynak izleri, çizikler, renk değişimleri ve pürüzler kalabiliyor. Paslanmaz polisaj, bu yüzeyi düzeltip istenen görünüme ve performansa kavuşturan işlemdir.",
+    "tags": []
   },
   {
     "title": "Sac Metal Bükümünde K-Faktörü ve İmalat Hatalarını Önleme",
@@ -15,7 +24,13 @@
     "category": "Sac Metal",
     "image": "assets/images/cnc-fabrication.jpg",
     "description": "Abkant pres bükümlerinde doğru K-faktörü seçimi, sac açınımı çıkarırken neden hayati önem taşır? İmalatta fireyi sıfıra indiren mühendislik hesapları.",
-    "tags": ["Sac Bükümü", "Abkant Pres", "K-Faktörü", "SolidWorks"]
+    "tags": [
+      "Sac Bükümü",
+      "Abkant Pres",
+      "K-Faktörü",
+      "SolidWorks",
+      "Tasarım"
+    ]
   },
   {
     "title": "Talaşlı İmalatta Parça Maliyetini %30 Düşüren 5 Tasarım Kuralı",
@@ -24,7 +39,13 @@
     "category": "DFM & Maliyet",
     "image": "assets/images/cad-drafting.jpg",
     "description": "Gereksiz dar toleranslar, derin cep boşaltmaları ve standart dışı pahlar maliyeti nasıl katlar? İmalata Yönelik Tasarım (DFM) ile maliyet düşürme yöntemleri.",
-    "tags": ["Talaşlı İmalat", "CNC", "DFM", "Maliyet Optimizasyonu"]
+    "tags": [
+      "Talaşlı İmalat",
+      "CNC",
+      "DFM",
+      "Maliyet Optimizasyonu",
+      "Mühendislik"
+    ]
   },
   {
     "title": "Fikirden Seri Üretime: 5 Aşamalı Başarılı Proje Yönetimi",
@@ -33,6 +54,6 @@
     "category": "Ürün Geliştirme",
     "image": "assets/images/hero-cad.jpg",
     "description": "Eskiz aşamasından çalışan prototipe, ardından seri üretim bantlarına uzanan eksiksiz mühendislik yol haritası.",
-    "tags": ["Ürün Geliştirme", "Prototipleme", "Mühendislik", "Seri Üretim"]
+    "tags": []
   }
 ]

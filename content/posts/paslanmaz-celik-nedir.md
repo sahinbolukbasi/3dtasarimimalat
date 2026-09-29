@@ -1,121 +1,72 @@
 ---
-title: "Paslanmaz Çelik Nedir? Türleri, Özellikleri ve Kullanım Alanları"
+title: "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları"
 slug: "paslanmaz-celik-nedir"
 date: "2026-09-29"
-category: "Sac Metal"
-image: "assets/images/cnc-fabrication.jpg"
-description: "Paslanmaz çelik (inox) nedir? 304, 316, 430 gibi yaygın paslanmaz çelik türleri, mekanik özellikleri, korozyon direnci ve sanayi kullanım alanları hakkında kapsamlı rehber."
-tags: ["Paslanmaz Çelik", "Inox", "304", "316", "430", "Sac Metal", "Korozyon"]
+category: "Tasarım & Mühendislik"
+image: "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png"
+description: "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama 'paslanmaz çelik' tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için"
+tags: ["Paslanmaz Çelik", "Inox", "304", "316", "430"]
 ---
 
-# Paslanmaz Çelik Nedir? Türleri, Özellikleri ve Kullanım Alanları
+# Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları
 
-Paslanmaz çelik, içeriğindeki **krom (Cr)** elementi sayesinde üzerinde oluşan ince pasivasyon tabakası ile korozyona (paslanmaya) karşı dirençli hale gelmiş çelik alaşımlarıdır. Türkçede sıklıkla **"inox"** veya **"inoxidable"** olarak da adlandırılır.
+Paslanmaz çelik, içeriğindeki **krom (Cr)** elementi sayesinde üzerinde oluşan ince pasivasyon tabakası ile korozyona (paslanmaya) karşı dirençli hale gelmiş çelik alaşımlarıdır.
 
 ## Paslanmaz Çelik Nasıl Paslanmaz?
 
-Krom, çeliğin yüzeyinde sadece birkaç nanometre kalınlığında, şeffaf ve sert bir **krom oksit (Cr₂O₃)** tabakası oluşturur. Bu tabaka:
-
-- Hava ve nem ile çeliğin temasını keser
-- Kendiliğinden iyileşen (self-healing) bir yapıya sahiptir
-- Çizilse bile tekrar oluşur (yeterli krom ve oksjen varlığında)
+Krom, çeliğin yüzeyinde sadece birkaç nanometre kalınlığında, şeffaf ve sert bir **krom oksit (Cr₂O₃)** tabakası oluşturur. Bu tabaka hava ve nem ile çeliğin temasını keser.
 
 > **Minimum Krom Oranı:** Paslanmaz çelik standartlarına göre, bir çeliğin "paslanmaz" sayılabilmesi için içeriğinde en az **%10.5 krom** bulunması gerekir.
 
-## Yaygın Paslanmaz Çelik Türleri (AISI Sınıflandırması)
+## En Yaygın 5 Paslanmaz Çelik Türü
 
-### 1. AISI 304 - EN 1.4301 (Klasik Paslanmaz Çelik)
-En yaygın kullanılan paslanmaz çelik türüdür.
+### 1. AISI 304 (EN 1.4301) - Klasik Paslanmaz
+En yaygın kullanılan paslanmaz çelik türüdür. Mutfak ekipmanları, gıda tankları ve mimari uygulamalarda tercih edilir.
 
-| Özellik | Değer |
-|---------|-------|
-| Krom (Cr) | %18-20 |
-| Nikel (Ni) | %8-10.5 |
-| Karbon (C) | Max %0.08 |
-| Yoğunluk | 7.93 g/cm³ |
+**Özellikler:**
+- Krom: %18-20
+- Nikel: %8-10.5
+- Mükemmel korozyon direnci
+- Manyetik değildir
 
-**Kullanım Alanları:**
-- Mutfak ekipmanları ve çatal-bıçak takımları
-- Gıda ve kimya sektörü tankları
-- Mimari cephe kaplamaları
-- Evye ve lavabolar
-
-### 2. AISI 316 - EN 1.4401 (Deniz Suyu Dayanımlı)
-304'e ek olarak **molibden (Mo)** içerir, deniz suyu ve kimyasallara karşı daha dirençlidir.
-
-| Özellik | Değer |
-|---------|-------|
-| Krom (Cr) | %16-18 |
-| Nikel (Ni) | %10-14 |
-| Molibden (Mo) | %2-3 |
+### 2. AISI 316 (EN 1.4401) - Deniz Suyu Dayanımlı
+304'e ek olarak **molibden (Mo)** içerir. Deniz suyu, kimyasallar ve asidik ortamlara karşı daha dirençlidir.
 
 **Kullanım Alanları:**
 - Denizcilik ve gemi sanayi
 - Tıbbi cihaz ve implantlar
 - Petrokimya tesisleri
-- Foseptik ve atık su tankları
 
-### 3. AISI 430 - EN 1.4016 (Ferritik, Mıknatıslanır)
+### 3. AISI 430 (EN 1.4016) - Ferritik, Ekonomik
 Nikel içermeyen, manyetik özellik gösteren ekonomik paslanmaz çeliktir.
-
-| Özellik | Değer |
-|---------|-------|
-| Krom (Cr) | %16-18 |
-| Nikel (Ni) | Yok (%0) |
-| Yoğunluk | 7.7 g/cm³ |
 
 **Kullanım Alanları:**
 - Buzdolabı ve beyaz eşya gövdeleri
 - Otomotiv egzoz sistemleri
 - Mutfak ekipmanları (ekonomik segment)
 
-## Mekanik Özellikler Karşılaştırması
+### 4. AISI 310 (EN 1.4841) - Yüksek Sıcaklık
+Yüksek sıcaklık uygulamaları için idealdir. 1100°C'ye kadar oksidasyon direnci sağlar.
 
-| Tür | Akma Mukavemeti (MPa) | Çekme Mukavemeti (MPa) | Sertlik (HB) |
-|-----|----------------------|------------------------|--------------|
-| AISI 304 | 210 | 520 | 123 |
-| AISI 316 | 220 | 530 | 149 |
-| AISI 430 | 240 | 450 | 183 |
-| Karbon Çelik (S235) | 235 | 360 | 120 |
+### 5. AISI 301 (EN 1.4310) - Yüksek Mukavemet
+Soğuk şekillendirme ile yüksek mukavemet kazandırılabilir. Yay ve klips uygulamalarında kullılır.
 
-## Paslanmaz Çelik Büküm ve Kaynak İpuçları
+## Karşılaştırma Tablosu
 
-### Sac Bükümünde Dikkat Edilecekler:
+| Tür | Krom | Nikel | Molibden | Özellik |
+|-----|------|-------|----------|---------|
+| 304 | %18-20 | %8-10.5 | - | Genel kullanım |
+| 316 | %16-18 | %10-14 | %2-3 | Deniz suyu dayanımlı |
+| 430 | %16-18 | - | - | Ekonomik, manyetik |
+| 310 | %24-26 | %19-22 | - | Yüksek sıcaklık |
+| 301 | %16-18 | %6-8 | - | Yüksek mukavemet |
 
-1. **Büküm Radyusu:** Paslanmaz çelik sert ve elastiktir. Büküm iç radyusları sac kalınlığının **en az 1.5 katı** olmalıdır.
+## Hangi Türü Seçmelisiniz?
 
-2. **Geri Yaylanma (Springback):** 304 paslanmaz çelik, yumuşak çeliklere göre %20-30 daha fazla geri yaylanma gösterir. Büküm açısı hesaplamalarında bu faktör göz önünde bulundurulmalıdır.
+- **Gıda/Mutfak:** 304
+- **Deniz suyu/Kimyasal:** 316
+- **Beyaz eşya:** 430
+- **Yüksek sıcaklık:** 310
+- **Yay/klips:** 301
 
-3. **K-Faktörü:** Paslanmaz çelik bükümlerinde K-faktörü genellikle **0.40-0.45** aralığında kullanılır.
-
-### Kaynak İşlemleri:
-
-- **TIG (GTAW)** kaynağı en yaygın yöntemdir
-- AISI 308L veya 316L kaynak teli kullanılmalıdır
-- Kaynak sonrası pasivasyon (asit banyosu) işlemi uygulanmalıdır
-- Isı girişini kontrol etmek için dar dalga boyu ve soğutma aralıkları önemlidir
-
-## Paslanmaz Çelik Seçim Rehberi
-
-| Uygulama | Önerilen Tür | Neden? |
-|----------|--------------|--------|
-| Mutfak / Gıda | 304 | Ekonomik, hijyenik |
-| Deniz suyu ortamı | 316 | Molibden sayesinde tuzlu suya dayanıklı |
-| Manyetik tutucu | 430 | Mıknatıs tutar, ekonomik |
-| Yüksek sıcaklık (>400°C) | 321 | Titanyum stabilizasyonu |
-| Asitik ortamlar | 316L | Düşük karbon, korozyon direnci |
-
-## Bakım ve Temizlik Önerileri
-
-Paslanmaz çelik yüzeylerin ömrünü uzatmak için:
-
-- **Klor içeren temizleyicilerden kaçının** (çatlak korozyonu riski)
-- Pas ve kir birikintilerini düzenli temizleyin
-- Yüzeyi çizmeden temizlik yapın
-- Temizlik sonrası durulama kurutma yapın
-
-## 3D Tasarım İmalat Farkı
-
-Paslanmaz çelik sac büküm projelerinizde, malzeme seçimi ve büküm toleranslarını atölye kapasitesine göre optimize ediyoruz. SolidWorks ortamında malzeme özel K-faktörü tanımlamaları ile kesime hazır DXF açınımları üretiyoruz.
-
-**Paslanmaz çelik projeleriniz için hemen teknik destek alın.**
+Paslanmaz çelik projeleriniz için teknik destek almak isterseniz WhatsApp üzerinden iletişime geçebilirsiniz.
