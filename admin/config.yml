@@ -61,3 +61,13 @@ collections:
           - { label: "Telefon", name: "phone", widget: "string", default: "+90 537 468 63 02" }
           - { label: "E-Posta Adresi", name: "email", widget: "string", default: "zb.ercan.rep@gmail.com" }
           - { label: "Google Analytics Ölçüm Kimliği", name: "ga_id", widget: "string", default: "G-XXXXXXXXXX" }
+
+  # 3. Blog Yazıları Listesi (posts.json - Otomatik Güncellenir)
+  - name: "blog-list"
+    label: "Blog Yazıları Listesi"
+    file: "content/posts/posts.json"
+    description: "Bu dosya otomatik olarak güncellenir. Admin panel'den yeni yazı eklediğinizde GitHub Actions bu listeyi yeniden oluşturur."
+    editor:
+      preview: false
+    fields:
+      - { label: "Otomatik Güncelleme", name: "note", widget: "text", default: "⚠️ Bu dosya otomatik güncellenir. Yeni yazı eklemek için yukarıdaki 'Blog Yazıları' koleksiyonunu kullanın.", rows: 4 }
