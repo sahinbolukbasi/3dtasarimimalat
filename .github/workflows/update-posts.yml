@@ -7,6 +7,8 @@ on:
       - 'content/posts/*.md'
       - '.github/workflows/update-posts.yml'
   workflow_dispatch:
+  schedule:
+    - cron: "0 */1 * * *"  # Her 1 saatte bir
   pull_request:
     branches: [ main ]
     types: [closed]
