@@ -190,14 +190,84 @@
       }
     }
 
+    function parseQuickFrontmatter(text) {
+      const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+      if (!match) return {};
+      const metadata = { tags: [] };
+      const lines = match[1].split('\n');
+      let currentKey = null;
+
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) return;
+        if (trimmed.startsWith('- ') && currentKey) {
+          metadata[currentKey].push(trimmed.slice(2).trim().replace(/^['"]|['"]$/g, ''));
+          return;
+        }
+        const colonIdx = line.indexOf(':');
+        if (colonIdx > -1) {
+          const key = line.slice(0, colonIdx).trim();
+          let val = line.slice(colonIdx + 1).trim().replace(/^['"]|['"]$/g, '');
+          if (key === 'tags') {
+            currentKey = 'tags';
+            try { metadata.tags = JSON.parse(val); } catch { metadata.tags = []; }
+          } else {
+            currentKey = null;
+            metadata[key] = val;
+          }
+        }
+      });
+      return metadata;
+    }
+
     async function loadAllBlogPosts() {
       const container = document.getElementById('blogPostsGrid');
       if (!container) return;
 
       try {
-        const res = await fetch(`../content/posts/posts.json?t=${Date.now()}`);
-        if (!res.ok) return;
-        const posts = await res.json();
+        let posts = [];
+        try {
+          const res = await fetch(`../content/posts/posts.json?t=${Date.now()}`);
+          if (res.ok) posts = await res.json();
+        } catch (e) {}
+
+        // GitHub Actions beklemeden: Sveltia CMS'ten eklenen en yeni dosyaları anında algıla
+        try {
+          const ghRes = await fetch('https://api.github.com/repos/sahinbolukbasi/3dtasarimimalat/contents/content/posts');
+          if (ghRes.ok) {
+            const ghFiles = await ghRes.json();
+            const mdFiles = ghFiles.filter(f => f.name.endsWith('.md') && f.name !== 'posts.json');
+            const existingSlugs = new Set(posts.map(p => p.slug));
+
+            for (const f of mdFiles) {
+              const fileSlug = f.name.replace('.md', '');
+              if (!existingSlugs.has(fileSlug)) {
+                try {
+                  const rawRes = await fetch(`../content/posts/${f.name}?t=${Date.now()}`);
+                  if (rawRes.ok) {
+                    const text = await rawRes.text();
+                    const fm = parseQuickFrontmatter(text);
+                    posts.unshift({
+                      title: fm.title || fileSlug,
+                      slug: fileSlug,
+                      date: fm.date || new Date().toISOString().split('T')[0],
+                      category: fm.category || 'Mühendislik',
+                      image: fm.image || '/assets/images/cad-drafting.jpg',
+                      description: fm.description || '',
+                      tags: fm.tags || []
+                    });
+                    existingSlugs.add(fileSlug);
+                  }
+                } catch (err) {}
+              }
+            }
+          }
+        } catch (ghErr) {
+          console.debug('Direct GitHub sync skipped:', ghErr);
+        }
+
+        // Tarihe göre yeniden eskiye sırala
+        posts.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
         if (posts && posts.length > 0) {
           container.innerHTML = '';

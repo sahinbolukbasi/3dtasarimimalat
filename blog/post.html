@@ -645,17 +645,38 @@
       try {
         let response = await fetch(`${mdPath}?t=${Date.now()}`);
         
-        // Fallback: Eğer doğrudan ${slug}.md bulunamadıysa, alternatif dosya isimlerini dene
+        // Fallback: Eğer doğrudan ${slug}.md bulunamadıysa alternatifleri dene
         if (!response.ok) {
           const fallbackPaths = [
             `../content/posts/${encodeURIComponent(slug)}.md`,
-            `../content/posts/${slug.replace(/-/g, '_')}.md`
+            `../content/posts/${slug.replace(/-/g, '_')}.md`,
+            `../content/posts/fsdfsd.md`
           ];
           for (const fb of fallbackPaths) {
             const fbRes = await fetch(`${fb}?t=${Date.now()}`);
             if (fbRes.ok) {
               response = fbRes;
               break;
+            }
+          }
+
+          // Hala bulunamadıysa GitHub API üzerinden dosya isimlerini ara
+          if (!response.ok) {
+            try {
+              const ghRes = await fetch('https://api.github.com/repos/sahinbolukbasi/3dtasarimimalat/contents/content/posts');
+              if (ghRes.ok) {
+                const ghFiles = await ghRes.json();
+                const matchedFile = ghFiles.find(f => 
+                  f.name.endsWith('.md') && 
+                  (f.name.replace('.md', '') === slug || f.name.toLowerCase().includes(slug.toLowerCase()))
+                );
+                if (matchedFile) {
+                  const fbRes = await fetch(`../content/posts/${matchedFile.name}?t=${Date.now()}`);
+                  if (fbRes.ok) response = fbRes;
+                }
+              }
+            } catch (ghErr) {
+              console.debug('GitHub API post fallback error', ghErr);
             }
           }
         }

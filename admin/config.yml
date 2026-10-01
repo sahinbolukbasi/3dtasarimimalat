@@ -35,7 +35,6 @@ collections:
       preview: true
     fields:
       - { label: "Yazı Başlığı", name: "title", widget: "string", required: true }
-      - { label: "Slug / URL Bağlantısı", name: "slug", widget: "string", required: false, hint: "Boş bırakırsanız başlıktan otomatik oluşturulur (örn: lazer-kaynagi-nedir)" }
       - { label: "Yayın Tarihi", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: true }
       - { label: "Kategori", name: "category", widget: "select", options: ["Tasarım & Mühendislik", "Sac Metal", "Talaşlı İmalat", "Ürün Geliştirme", "DFM & Maliyet"], required: true }
       - { label: "Kapak Görseli", name: "image", widget: "image", default: "/assets/images/cad-drafting.jpg", required: false }

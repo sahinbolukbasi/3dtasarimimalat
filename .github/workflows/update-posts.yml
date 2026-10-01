@@ -130,7 +130,7 @@ jobs:
           }
 
           const fileSlug = file.replace('.md', '');
-          const slug = metadata.slug || fileSlug;
+          const slug = fileSlug;
           let image = metadata.image || '/assets/images/cad-drafting.jpg';
           if (!image.startsWith('/') && !image.startsWith('http')) {
             image = '/' + image;
