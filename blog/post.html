@@ -408,7 +408,7 @@
       </div>
       <div class="top-contacts">
         <a href="tel:+905374686302" class="top-contact-link"><span>📞 0537 468 63 02</span></a>
-        <a href="mailto:zb.ercan.rep@gmail.com" class="top-contact-link"><span>✉️ zb.ercan.rep@gmail.com</span></a>
+        <a href="mailto:info@3dtasarimimalat.com" class="top-contact-link"><span>✉️ info@3dtasarimimalat.com</span></a>
       </div>
     </div>
   </header>
@@ -591,7 +591,7 @@
         </div>
         <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
           <a href="tel:+905374686302" style="font-weight: 600; color: #fff; font-size: 0.95rem;">📞 +90 537 468 63 02</a>
-          <a href="mailto:zb.ercan.rep@gmail.com" style="font-weight: 600; color: #fff; font-size: 0.95rem;">✉️ zb.ercan.rep@gmail.com</a>
+          <a href="mailto:info@3dtasarimimalat.com" style="font-weight: 600; color: #fff; font-size: 0.95rem;">✉️ info@3dtasarimimalat.com</a>
         </div>
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted);">
@@ -607,6 +607,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Ayarları content/settings.json'dan çek ve sayfaya uygula
+      syncPostSettings();
+
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('slug') || 'sac-metal-bukumunde-k-faktoru';
       const mdPath = `../content/posts/${slug}.md`;
@@ -614,9 +617,9 @@
       const rawMdLink = document.getElementById('rawMdLink');
       if (rawMdLink) rawMdLink.href = mdPath;
 
-      // 1. İlgili Yazıları Çekme
+      // 2. İlgili Yazıları Çekme
       try {
-        const postsRes = await fetch('../content/posts/posts.json');
+        const postsRes = await fetch(`../content/posts/posts.json?t=${Date.now()}`);
         if (postsRes.ok) {
           const allPosts = await postsRes.json();
           const relatedContainer = document.getElementById('relatedPostsList');
@@ -638,9 +641,25 @@
         console.debug('Related posts fetch error', e);
       }
 
-      // 2. Makaleyi Yükleme ve Render
+      // 3. Makaleyi Yükleme ve Render
       try {
-        const response = await fetch(mdPath);
+        let response = await fetch(`${mdPath}?t=${Date.now()}`);
+        
+        // Fallback: Eğer doğrudan ${slug}.md bulunamadıysa, alternatif dosya isimlerini dene
+        if (!response.ok) {
+          const fallbackPaths = [
+            `../content/posts/${encodeURIComponent(slug)}.md`,
+            `../content/posts/${slug.replace(/-/g, '_')}.md`
+          ];
+          for (const fb of fallbackPaths) {
+            const fbRes = await fetch(`${fb}?t=${Date.now()}`);
+            if (fbRes.ok) {
+              response = fbRes;
+              break;
+            }
+          }
+        }
+
         if (!response.ok) throw new Error('Makale bulunamadı: ' + response.statusText);
         const text = await response.text();
 
@@ -653,27 +672,74 @@
           const yamlBlock = frontmatterMatch[1];
           bodyMarkdown = frontmatterMatch[2];
 
-          yamlBlock.split('\n').forEach(line => {
+          const lines = yamlBlock.split('\n');
+          let currentKey = null;
+          let multilineKey = null;
+          let multilineBuffer = [];
+
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const trimmed = line.trim();
+            if (!trimmed && !multilineKey) continue;
+
+            if (multilineKey) {
+              if (line.startsWith('  ') || line.startsWith('\t') || (!trimmed && multilineBuffer.length > 0)) {
+                if (trimmed) multilineBuffer.push(trimmed);
+                continue;
+              } else {
+                metadata[multilineKey] = multilineBuffer.join(' ');
+                multilineKey = null;
+                multilineBuffer = [];
+              }
+            }
+
+            if (trimmed.startsWith('#')) continue;
+
+            // YAML listesi: - Eleman
+            if (trimmed.startsWith('- ') && currentKey) {
+              const val = trimmed.slice(2).trim().replace(/^['"]|['"]$/g, '');
+              if (Array.isArray(metadata[currentKey])) {
+                metadata[currentKey].push(val);
+              }
+              continue;
+            }
+
             const colonIndex = line.indexOf(':');
             if (colonIndex > -1) {
               const key = line.slice(0, colonIndex).trim();
               let value = line.slice(colonIndex + 1).trim();
 
+              if (value === '|-' || value === '|' || value === '>' || value === '>-') {
+                multilineKey = key;
+                multilineBuffer = [];
+                currentKey = null;
+                continue;
+              }
+
+              if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+                value = value.slice(1, -1);
+              }
+
               if (key === 'tags') {
-                try {
-                  // JSON array format [a, b, c]
-                  metadata.tags = JSON.parse(value.replace(/'/g, '"'));
-                } catch {
-                  metadata.tags = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim());
+                currentKey = 'tags';
+                metadata.tags = [];
+                if (value) {
+                  try {
+                    metadata.tags = JSON.parse(value.replace(/'/g, '"'));
+                  } catch {
+                    metadata.tags = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim()).filter(Boolean);
+                  }
                 }
               } else {
-                if (value.startsWith('"') && value.endsWith('"')) {
-                  value = value.slice(1, -1);
-                }
+                currentKey = null;
                 metadata[key] = value;
               }
             }
-          });
+          }
+
+          if (multilineKey && multilineBuffer.length > 0) {
+            metadata[multilineKey] = multilineBuffer.join(' ');
+          }
         }
 
         // Başlık, Tarih, Kategori
@@ -691,9 +757,11 @@
         // Kapak Resmi
         const coverImg = document.getElementById('articleCover');
         if (metadata.image) {
-          coverImg.src = metadata.image.startsWith('http') || metadata.image.startsWith('../') 
-            ? metadata.image 
-            : '../' + metadata.image;
+          let imgSrc = metadata.image;
+          if (!imgSrc.startsWith('/') && !imgSrc.startsWith('http')) {
+            imgSrc = '/' + imgSrc;
+          }
+          coverImg.src = imgSrc;
           coverImg.style.display = 'block';
         }
 
@@ -725,6 +793,59 @@
         `;
       }
     });
+
+    async function syncPostSettings() {
+      try {
+        const res = await fetch(`../content/settings.json?t=${Date.now()}`);
+        if (!res.ok) return;
+        const settings = await res.json();
+        if (!settings) return;
+
+        if (settings.phone) {
+          const cleanPhone = settings.phone.replace(/[^0-9+]/g, '');
+          document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+            a.href = `tel:${cleanPhone}`;
+            const span = a.querySelector('span:last-child');
+            if (span && span !== a) {
+              span.textContent = span.textContent.startsWith('📞') ? `📞 ${settings.phone}` : settings.phone;
+            } else {
+              a.textContent = `📞 ${settings.phone}`;
+            }
+          });
+        }
+        if (settings.email) {
+          document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+            a.href = `mailto:${settings.email}`;
+            const span = a.querySelector('span:last-child');
+            if (span && span !== a) {
+              span.textContent = span.textContent.startsWith('✉️') ? `✉️ ${settings.email}` : settings.email;
+            } else {
+              a.textContent = `✉️ ${settings.email}`;
+            }
+          });
+        }
+        if (settings.whatsapp) {
+          const clean = settings.whatsapp.replace(/[^0-9]/g, '');
+          const full = clean.startsWith('90') ? clean : (clean.startsWith('0') ? '9' + clean : '90' + clean);
+          document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+            const oldHref = a.getAttribute('href') || '';
+            const textParam = oldHref.includes('text=') ? oldHref.split('text=')[1] : '';
+            a.href = `https://wa.me/${full}${textParam ? '?text=' + textParam : ''}`;
+            const span = a.querySelector('span:last-child');
+            if (span && span !== a && span.textContent.match(/^[0-9\s+]+$/)) {
+              span.textContent = settings.whatsapp;
+            }
+          });
+        }
+        if (settings.main_slogan) {
+          document.querySelectorAll('.top-slogan-tag span:last-child').forEach(el => {
+            el.textContent = `“${settings.main_slogan}”`;
+          });
+        }
+      } catch (e) {
+        console.debug('Post settings sync error', e);
+      }
+    }
 
     function escapeHtml(text) {
       if (!text) return '';

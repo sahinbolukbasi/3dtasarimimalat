@@ -1,35 +1,37 @@
-name: Update Blog Posts Index
+name: Sync Blog Posts Index
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'content/posts/*.md'
+      - 'content/settings.json'
       - '.github/workflows/update-posts.yml'
   workflow_dispatch:
-  schedule:
-    - cron: "0 */1 * * *"  # Her 1 saatte bir
-  pull_request:
-    branches: [ main ]
-    types: [closed]
+
+concurrency:
+  group: sync-blog-index
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  update-posts-json:
+  sync-posts-json:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
       
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         
-    - name: Update posts.json and validate slugs
+    - name: Update posts.json and validate metadata
       run: |
         node << 'EOF'
         const fs = require('fs');
@@ -38,92 +40,139 @@ jobs:
         const postsDir = './content/posts';
         const postsJsonPath = path.join(postsDir, 'posts.json');
 
-        // Read all markdown files
+        if (!fs.existsSync(postsDir)) {
+          console.error('Posts directory not found!');
+          process.exit(1);
+        }
+
         const files = fs.readdirSync(postsDir)
           .filter(f => f.endsWith('.md') && f !== 'posts.json');
+
+        console.log(`Found ${files.length} markdown post files.`);
 
         const posts = files.map(file => {
           const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
           
-          // Extract frontmatter
-          const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
-          if (!frontmatterMatch) return null;
+          const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+          if (!fmMatch) {
+            console.warn(`Skipping ${file}: No frontmatter found.`);
+            return null;
+          }
           
-          const frontmatter = frontmatterMatch[1];
-          const metadata = {};
-          
-          frontmatter.split('\n').forEach(line => {
-            const colonIndex = line.indexOf(':');
-            if (colonIndex > -1) {
-              const key = line.slice(0, colonIndex).trim();
-              let value = line.slice(colonIndex + 1).trim();
-              
-              // Remove quotes
-              if ((value.startsWith('"') && value.endsWith('"')) || 
-                  (value.startsWith("'") && value.endsWith("'"))) {
-                value = value.slice(1, -1);
-              }
-              
-              // Parse arrays
-              if (key === 'tags') {
-                try {
-                  metadata[key] = JSON.parse(value.replace(/'/g, '"'));
-                } catch {
-                  metadata[key] = value.replace(/[\[\]"]/g, '').split(',').map(s => s.trim()).filter(s => s);
-                }
+          const rawFm = fmMatch[1];
+          const lines = rawFm.split('\n');
+          const metadata = { tags: [] };
+          let currentKey = null;
+          let multilineKey = null;
+          let multilineBuffer = [];
+
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const trimmed = line.trim();
+            if (!trimmed && !multilineKey) continue;
+
+            if (multilineKey) {
+              if (line.startsWith('  ') || line.startsWith('\t') || (!trimmed && multilineBuffer.length > 0)) {
+                if (trimmed) multilineBuffer.push(trimmed);
+                continue;
               } else {
-                metadata[key] = value;
+                metadata[multilineKey] = multilineBuffer.join(' ');
+                multilineKey = null;
+                multilineBuffer = [];
               }
             }
-          });
-          
-          // Slug'dan dosya ismini oluştur (Türkçe karakterleri İngilizce'ye çevir)
-          let expectedFilename = (metadata.slug || file.replace('.md', '')).toLowerCase()
-            .replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/i, 'i')
-            .replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u')
-            .replace(/[^a-z0-9-]/g, '-') + '.md';
-          
+
+            if (trimmed.startsWith('#')) continue;
+
+            if (trimmed.startsWith('- ') && currentKey) {
+              const val = trimmed.slice(2).trim().replace(/^['"]|['"]$/g, '');
+              if (Array.isArray(metadata[currentKey])) {
+                metadata[currentKey].push(val);
+              }
+              continue;
+            }
+
+            const colonIdx = line.indexOf(':');
+            if (colonIdx > -1) {
+              const key = line.slice(0, colonIdx).trim();
+              let val = line.slice(colonIdx + 1).trim();
+
+              if (val === '|-' || val === '|' || val === '>' || val === '>-') {
+                multilineKey = key;
+                multilineBuffer = [];
+                currentKey = null;
+                continue;
+              }
+
+              if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                val = val.slice(1, -1);
+              }
+
+              if (key === 'tags') {
+                currentKey = 'tags';
+                metadata.tags = [];
+                if (val) {
+                  try {
+                    metadata.tags = JSON.parse(val.replace(/'/g, '"'));
+                  } catch {
+                    metadata.tags = val.replace(/[\[\]"]/g, '').split(',').map(s => s.trim()).filter(Boolean);
+                  }
+                }
+              } else {
+                currentKey = null;
+                metadata[key] = val;
+              }
+            }
+          }
+
+          if (multilineKey && multilineBuffer.length > 0) {
+            metadata[multilineKey] = multilineBuffer.join(' ');
+          }
+
+          const fileSlug = file.replace('.md', '');
+          const slug = metadata.slug || fileSlug;
+          let image = metadata.image || '/assets/images/cad-drafting.jpg';
+          if (!image.startsWith('/') && !image.startsWith('http')) {
+            image = '/' + image;
+          }
+
           return {
-            title: metadata.title || 'Untitled',
-            slug: metadata.slug || file.replace('.md', ''),
+            title: metadata.title || 'Mühendislik Makalesi',
+            slug: slug,
             date: metadata.date || new Date().toISOString().split('T')[0],
             category: metadata.category || 'Mühendislik',
-            image: metadata.image || 'assets/images/cad-drafting.jpg',
+            image: image,
             description: metadata.description || '',
-            tags: metadata.tags || [],
-            _expectedFilename: expectedFilename
+            tags: Array.isArray(metadata.tags) ? metadata.tags : []
           };
-        }).filter(p => p !== null);
+        }).filter(Boolean);
 
-        // Sort by date (newest first)
+        // Sort by date descending (newest first)
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // Write posts.json
-        fs.writeFileSync(postsJsonPath, JSON.stringify(posts, null, 2) + '\n');
-        console.log(`Updated posts.json with ${posts.length} posts`);
-        
-        // Check for slug/filename mismatches
-        posts.forEach(post => {
-          if (post._expectedFilename !== post.slug + '.md') {
-            console.warn(`Warning: Slug "${post.slug}" may not match filename "${post.slug}.md"`);
+        // Deduplicate by slug
+        const uniquePosts = [];
+        const seenSlugs = new Set();
+        for (const p of posts) {
+          if (!seenSlugs.has(p.slug)) {
+            seenSlugs.add(p.slug);
+            uniquePosts.push(p);
           }
-        });
+        }
+
+        fs.writeFileSync(postsJsonPath, JSON.stringify(uniquePosts, null, 2) + '\n');
+        console.log(`Successfully updated posts.json with ${uniquePosts.length} posts.`);
         EOF
         
-    - name: Check if posts.json changed
-      id: check_changes
+    - name: Commit and push changes if updated
       run: |
-        if git diff --quiet content/posts/posts.json; then
-          echo "changed=false" >> $GITHUB_OUTPUT
-        else
-          echo "changed=true" >> $GITHUB_OUTPUT
-        fi
-        
-    - name: Commit and push changes
-      if: steps.check_changes.outputs.changed == 'true'
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add content/posts/posts.json
-        git commit -m "Auto-update posts.json [skip ci]" || exit 0
-        git push
+        if git diff --staged --quiet; then
+          echo "No changes to commit."
+        else
+          git commit -m "chore(auto): update posts.json [skip ci]"
+          git pull --rebase origin main
+          git push origin main
+        fi

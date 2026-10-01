@@ -111,19 +111,25 @@ _Bu mesaj web sitesi teklif formundan iletilmiştir._`;
  */
 async function applySiteSettings() {
   try {
-    // Cache bust ekleyerek her zaman en güncel ayarı çekiyoruz
-    const res = await fetch(`content/settings.json?t=${Date.now()}`);
-    if (!res.ok) return;
+    // Hem ana sayfa hem alt dizinlerde (blog/) çalışabilmesi için /content/settings.json yolunu kullanıyoruz
+    const settingsUrl = window.location.pathname.includes('/blog/') ? '../content/settings.json' : 'content/settings.json';
+    const res = await fetch(`${settingsUrl}?t=${Date.now()}`).catch(() => fetch(`/content/settings.json?t=${Date.now()}`));
+    if (!res || !res.ok) return;
     const settings = await res.json();
 
     if (!settings) return;
 
     // Telefon
     if (settings.phone) {
+      const cleanPhone = settings.phone.replace(/[^0-9+]/g, '');
       document.querySelectorAll('[data-cms="phone"], a[href^="tel:"]').forEach(el => {
-        el.href = `tel:${settings.phone.replace(/[^0-9+]/g, '')}`;
-        const span = el.querySelector('span:last-child') || el;
-        span.textContent = settings.phone;
+        el.href = `tel:${cleanPhone}`;
+        const span = el.querySelector('span:last-child');
+        if (span && span !== el) {
+          span.textContent = span.textContent.startsWith('📞') ? `📞 ${settings.phone}` : settings.phone;
+        } else if (!el.querySelector('svg')) {
+          el.textContent = el.textContent.startsWith('📞') ? `📞 ${settings.phone}` : settings.phone;
+        }
       });
       document.querySelectorAll('.contact-detail-item[href^="tel:"] .contact-detail-value').forEach(el => {
         el.textContent = settings.phone;
@@ -134,8 +140,12 @@ async function applySiteSettings() {
     if (settings.email) {
       document.querySelectorAll('[data-cms="email"], a[href^="mailto:"]').forEach(el => {
         el.href = `mailto:${settings.email}`;
-        const span = el.querySelector('span:last-child') || el;
-        span.textContent = settings.email;
+        const span = el.querySelector('span:last-child');
+        if (span && span !== el) {
+          span.textContent = span.textContent.startsWith('✉️') ? `✉️ ${settings.email}` : settings.email;
+        } else if (!el.querySelector('svg')) {
+          el.textContent = el.textContent.startsWith('✉️') ? `✉️ ${settings.email}` : settings.email;
+        }
       });
       document.querySelectorAll('.contact-detail-item[href^="mailto:"] .contact-detail-value').forEach(el => {
         el.textContent = settings.email;
@@ -149,7 +159,7 @@ async function applySiteSettings() {
       window.SITE_WHATSAPP_RAW = fullWa;
 
       document.querySelectorAll('a[href*="wa.me/"]').forEach(el => {
-        const oldHref = el.getAttribute('href');
+        const oldHref = el.getAttribute('href') || '';
         const textParam = oldHref.includes('text=') ? oldHref.split('text=')[1] : '';
         el.href = `https://wa.me/${fullWa}${textParam ? '?text=' + textParam : ''}`;
       });
@@ -182,15 +192,15 @@ async function applySiteSettings() {
 
 /**
  * Blog Yazılarını Listeleme Fonksiyonu
- * Önce GitHub / content/posts üzerinden dinamik listeyi kontrol eder,
- * bulunamazsa posts.json dosyasından çeker.
+ * content/posts/posts.json dosyasından en güncel yazıları çeker
  */
 async function loadRecentBlogPosts() {
   const blogContainer = document.getElementById('recentBlogGrid');
   if (!blogContainer) return;
 
   try {
-    const response = await fetch(`content/posts/posts.json?t=${Date.now()}`);
+    const postsUrl = window.location.pathname.includes('/blog/') ? '../content/posts/posts.json' : 'content/posts/posts.json';
+    const response = await fetch(`${postsUrl}?t=${Date.now()}`);
     if (!response.ok) throw new Error('Blog index json not found');
     const posts = await response.json();
 
@@ -206,9 +216,14 @@ async function loadRecentBlogPosts() {
              </div>`
           : '';
 
+        let imgSrc = post.image || '/assets/images/cad-drafting.jpg';
+        if (!imgSrc.startsWith('/') && !imgSrc.startsWith('http')) {
+          imgSrc = '/' + imgSrc;
+        }
+
         card.innerHTML = `
           <div class="blog-thumb">
-            <img src="${post.image || 'assets/images/cad-drafting.jpg'}" alt="${escapeHtml(post.title)}" loading="lazy">
+            <img src="${imgSrc}" alt="${escapeHtml(post.title)}" loading="lazy">
           </div>
           <div class="blog-content">
             <div class="blog-meta">

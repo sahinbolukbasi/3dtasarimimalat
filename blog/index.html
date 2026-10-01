@@ -40,7 +40,7 @@
       </div>
       <div class="top-contacts">
         <a href="tel:+905374686302" class="top-contact-link"><span>📞 0537 468 63 02</span></a>
-        <a href="mailto:zb.ercan.rep@gmail.com" class="top-contact-link"><span>✉️ zb.ercan.rep@gmail.com</span></a>
+        <a href="mailto:info@3dtasarimimalat.com" class="top-contact-link"><span>✉️ info@3dtasarimimalat.com</span></a>
       </div>
     </div>
   </header>
@@ -121,7 +121,7 @@
         </div>
         <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
           <a href="tel:+905374686302" style="font-weight: 600; color: #fff; font-size: 0.95rem;">📞 +90 537 468 63 02</a>
-          <a href="mailto:zb.ercan.rep@gmail.com" style="font-weight: 600; color: #fff; font-size: 0.95rem;">✉️ zb.ercan.rep@gmail.com</a>
+          <a href="mailto:info@3dtasarimimalat.com" style="font-weight: 600; color: #fff; font-size: 0.95rem;">✉️ info@3dtasarimimalat.com</a>
         </div>
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted);">
@@ -146,23 +146,43 @@
         const res = await fetch(`../content/settings.json?t=${Date.now()}`);
         if (!res.ok) return;
         const settings = await res.json();
+        if (!settings) return;
+
         if (settings.phone) {
+          const cleanPhone = settings.phone.replace(/[^0-9+]/g, '');
           document.querySelectorAll('a[href^="tel:"]').forEach(a => {
-            a.href = `tel:${settings.phone.replace(/[^0-9+]/g, '')}`;
-            a.textContent = `📞 ${settings.phone}`;
+            a.href = `tel:${cleanPhone}`;
+            const span = a.querySelector('span:last-child');
+            if (span && span !== a) {
+              span.textContent = span.textContent.startsWith('📞') ? `📞 ${settings.phone}` : settings.phone;
+            } else {
+              a.textContent = `📞 ${settings.phone}`;
+            }
           });
         }
         if (settings.email) {
           document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
             a.href = `mailto:${settings.email}`;
-            a.textContent = `✉️ ${settings.email}`;
+            const span = a.querySelector('span:last-child');
+            if (span && span !== a) {
+              span.textContent = span.textContent.startsWith('✉️') ? `✉️ ${settings.email}` : settings.email;
+            } else {
+              a.textContent = `✉️ ${settings.email}`;
+            }
           });
         }
         if (settings.whatsapp) {
           const clean = settings.whatsapp.replace(/[^0-9]/g, '');
           const full = clean.startsWith('90') ? clean : (clean.startsWith('0') ? '9' + clean : '90' + clean);
           document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
-            a.href = `https://wa.me/${full}`;
+            const oldHref = a.getAttribute('href') || '';
+            const textParam = oldHref.includes('text=') ? oldHref.split('text=')[1] : '';
+            a.href = `https://wa.me/${full}${textParam ? '?text=' + textParam : ''}`;
+          });
+        }
+        if (settings.main_slogan) {
+          document.querySelectorAll('.top-slogan-tag span:last-child').forEach(el => {
+            el.textContent = `“${settings.main_slogan}”`;
           });
         }
       } catch (e) {
@@ -192,9 +212,14 @@
                  </div>`
               : '';
 
+            let imgSrc = post.image || '/assets/images/cad-drafting.jpg';
+            if (!imgSrc.startsWith('/') && !imgSrc.startsWith('http')) {
+              imgSrc = '/' + imgSrc;
+            }
+
             article.innerHTML = `
               <div class="blog-thumb">
-                <img src="${post.image.startsWith('../') ? post.image : '../' + post.image}" alt="${escapeHtml(post.title)}" loading="lazy">
+                <img src="${imgSrc}" alt="${escapeHtml(post.title)}" loading="lazy">
               </div>
               <div class="blog-content">
                 <div class="blog-meta">

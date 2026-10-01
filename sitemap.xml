@@ -18,6 +18,30 @@
 
   <!-- Blog Yazıları -->
   <url>
+    <loc>https://3dtasarimimalat.com/blog/post.html?slug=uretime-uygun-tasarim-dfm</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://3dtasarimimalat.com/blog/post.html?slug=lazer-kaynagi-nedir</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dtasarimimalat.com/blog/post.html?slug=paslanmaz-celik-nedir</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://3dtasarimimalat.com/blog/post.html?slug=paslanmaz-polisaj-nedir</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://3dtasarimimalat.com/blog/post.html?slug=sac-metal-bukumunde-k-faktoru</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>

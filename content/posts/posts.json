@@ -4,9 +4,43 @@
     "slug": "uretime-uygun-tasarim-dfm",
     "date": "2026-10-01",
     "category": "Tasarım & Mühendislik",
-    "image": "/assets/images/Üretime Uygun Tasarım_ CAD’den İmalata.png",
-    "description": "|-",
-    "tags": []
+    "image": "/assets/images/uretime-uygun-tasarim-cad-imalat.png",
+    "description": "Ekranda kusursuz görünen bir 3D model, atölyeye indiğinde pahalı, yavaş ve sorunlu bir parçaya dönüşebilir. Çünkü CAD ortamında her şey mümkündür; atölyede ise takımın ulaşabildiği, makinenin büktüğü, kaynakçının elinin sığdığı kadarı gerçektir. Üretime uygun tasarım (DFM – Design for Manufacturing), parçayı tasarlarken üretim yöntemini baştan hesaba katma yaklaşımıdır. Amaç, işlevden ödün vermeden parçayı daha ucuz, daha hızlı ve daha az hatayla üretmektir.",
+    "tags": [
+      "Mühendislik",
+      "Tasarım",
+      "İmalat"
+    ]
+  },
+  {
+    "title": "Lazer Kaynağı Nedir? Nasıl Çalışır, Avantajları ve Kullanım Alanları",
+    "slug": "lazer-kaynagi-nedir",
+    "date": "2026-09-29",
+    "category": "Tasarım & Mühendislik",
+    "image": "/assets/images/Hdw9y.jpg",
+    "description": "Sac metal ve paslanmaz çelik imalatında kaynak kalitesi, ürünün hem görünümünü hem dayanımını belirler. Klasik yöntemlerde çarpılma, geniş ısı etkisi ve kaynak sonrası taşlama işi kaçınılmazdır. Lazer kaynağı, bu sorunları büyük ölçüde ortadan kaldıran modern bir birleştirme yöntemidir. Son yıllarda el tipi lazer kaynak makinelerinin yaygınlaşmasıyla küçük ve orta ölçekli atölyelerde de sıkça duyulur hale geldi.",
+    "tags": [
+      "Mühendislik",
+      "Tasarım",
+      "İmalat",
+      "lazer kaynak"
+    ]
+  },
+  {
+    "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
+    "slug": "paslanmaz-celik-nedir",
+    "date": "2026-09-29",
+    "category": "Tasarım & Mühendislik",
+    "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
+    "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
+    "tags": [
+      "Mühendislik",
+      "Tasarım",
+      "İmalat",
+      "stainlessteel",
+      "AISI304",
+      "AISI316"
+    ]
   },
   {
     "title": "Paslanmaz Polisaj Nedir? Yöntemleri, Avantajları ve Kullanım Alanları",
@@ -22,38 +56,11 @@
     ]
   },
   {
-    "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
-    "slug": "paslanmaz-celik-nedir",
-    "date": "2026-09-29",
-    "category": "Tasarım & Mühendislik",
-    "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
-    "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
-    "tags": []
-  },
-  {
-    "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
-    "slug": "paslanmaz-celik-nedir",
-    "date": "2026-09-29",
-    "category": "Tasarım & Mühendislik",
-    "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
-    "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
-    "tags": []
-  },
-  {
-    "title": "Lazer Kaynağı Nedir? Nasıl Çalışır, Avantajları ve Kullanım Alanları",
-    "slug": "lazer-kaynagi-nedir",
-    "date": "2026-09-29",
-    "category": "Tasarım & Mühendislik",
-    "image": "/assets/images/Hdw9y.jpg",
-    "description": "Sac metal ve paslanmaz çelik imalatında kaynak kalitesi, ürünün hem görünümünü hem dayanımını belirler. Klasik yöntemlerde çarpılma, geniş ısı etkisi ve kaynak sonrası taşlama işi kaçınılmazdır. Lazer kaynağı, bu sorunları büyük ölçüde ortadan kaldıran modern bir birleştirme yöntemidir. Son yıllarda el tipi lazer kaynak makinelerinin yaygınlaşmasıyla küçük ve orta ölçekli atölyelerde de sıkça duyulur hale geldi.",
-    "tags": []
-  },
-  {
     "title": "Sac Metal Bükümünde K-Faktörü ve İmalat Hatalarını Önleme",
     "slug": "sac-metal-bukumunde-k-faktoru",
     "date": "2026-09-27",
     "category": "Sac Metal",
-    "image": "assets/images/cnc-fabrication.jpg",
+    "image": "/assets/images/cnc-fabrication.jpg",
     "description": "Abkant pres bükümlerinde doğru K-faktörü seçimi, sac açınımı çıkarırken neden hayati önem taşır? İmalatta fireyi sıfıra indiren mühendislik hesapları.",
     "tags": [
       "Sac Bükümü",
@@ -68,7 +75,7 @@
     "slug": "talasli-imalatta-maliyet-optimizasyonu",
     "date": "2026-09-25",
     "category": "DFM & Maliyet",
-    "image": "assets/images/cad-drafting.jpg",
+    "image": "/assets/images/cad-drafting.jpg",
     "description": "Gereksiz dar toleranslar, derin cep boşaltmaları ve standart dışı pahlar maliyeti nasıl katlar? İmalata Yönelik Tasarım (DFM) ile maliyet düşürme yöntemleri.",
     "tags": [
       "Talaşlı İmalat",
@@ -83,8 +90,14 @@
     "slug": "fikirden-seri-uretime-muhendislik-adimlari",
     "date": "2026-09-20",
     "category": "Ürün Geliştirme",
-    "image": "assets/images/hero-cad.jpg",
+    "image": "/assets/images/hero-cad.jpg",
     "description": "Eskiz aşamasından çalışan prototipe, ardından seri üretim bantlarına uzanan eksiksiz mühendislik yol haritası.",
-    "tags": []
+    "tags": [
+      "Ürün Geliştirme",
+      "Prototipleme",
+      "Mühendislik",
+      "Seri Üretim",
+      "CAD"
+    ]
   }
 ]

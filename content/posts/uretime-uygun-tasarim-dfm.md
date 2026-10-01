@@ -3,7 +3,7 @@ title: 'Üretime Uygun Tasarım (DFM): Parçanız Çizimde Değil, Atölyede Kaz
 slug: uretime-uygun-tasarim-dfm
 date: 2026-10-01
 category: Tasarım & Mühendislik
-image: /assets/images/Üretime Uygun Tasarım_ CAD’den İmalata.png
+image: /assets/images/uretime-uygun-tasarim-cad-imalat.png
 description: |-
   Ekranda kusursuz görünen bir 3D model, atölyeye indiğinde pahalı, yavaş ve sorunlu bir parçaya dönüşebilir. Çünkü CAD ortamında her şey mümkündür; atölyede ise takımın ulaşabildiği, makinenin büktüğü, kaynakçının elinin sığdığı kadarı gerçektir.
 
