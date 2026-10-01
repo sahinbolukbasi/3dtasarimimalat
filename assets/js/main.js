@@ -221,24 +221,36 @@ async function loadRecentBlogPosts() {
           imgSrc = '/' + imgSrc;
         }
 
+        const postUrl = `blog/post.html?slug=${post.slug}`;
+
         card.innerHTML = `
-          <div class="blog-thumb">
+          <a href="${postUrl}" class="blog-thumb" aria-label="${escapeHtml(post.title)}">
             <img src="${imgSrc}" alt="${escapeHtml(post.title)}" loading="lazy">
-          </div>
+          </a>
           <div class="blog-content">
             <div class="blog-meta">
               <span>📅 ${post.date}</span>
               <span>•</span>
               <span>🏷️ ${post.category || 'Mühendislik'}</span>
             </div>
-            <h3 class="blog-card-title">${escapeHtml(post.title)}</h3>
+            <h3 class="blog-card-title">
+              <a href="${postUrl}">${escapeHtml(post.title)}</a>
+            </h3>
             <p class="blog-card-desc">${escapeHtml(post.description)}</p>
             ${tagsHtml}
-            <a href="blog/post.html?slug=${post.slug}" class="blog-read-more" style="margin-top: auto;">
+            <a href="${postUrl}" class="blog-read-more" style="margin-top: auto;">
               Devamını Oku <span>→</span>
             </a>
           </div>
         `;
+
+        // Kartın herhangi bir yerine tıklandığında da makaleyi aç
+        card.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) {
+            window.location.href = postUrl;
+          }
+        });
+
         blogContainer.appendChild(card);
       });
     }

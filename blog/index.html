@@ -217,25 +217,37 @@
               imgSrc = '/' + imgSrc;
             }
 
+            const postUrl = `post.html?slug=${post.slug}`;
+
             article.innerHTML = `
-              <div class="blog-thumb">
+              <a href="${postUrl}" class="blog-thumb" aria-label="${escapeHtml(post.title)}">
                 <img src="${imgSrc}" alt="${escapeHtml(post.title)}" loading="lazy">
-              </div>
+              </a>
               <div class="blog-content">
                 <div class="blog-meta">
                   <span>📅 ${post.date}</span>
                   <span>•</span>
                   <span>🏷️ ${post.category || 'Mühendislik'}</span>
                 </div>
-                <h2 class="blog-card-title">${escapeHtml(post.title)}</h2>
+                <h2 class="blog-card-title">
+                  <a href="${postUrl}">${escapeHtml(post.title)}</a>
+                </h2>
                 <p class="blog-card-desc">${escapeHtml(post.description)}</p>
                 ${tagsHtml}
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 1rem;">
-                  <a href="post.html?slug=${post.slug}" class="blog-read-more">Makaleyi Oku →</a>
+                  <a href="${postUrl}" class="blog-read-more">Makaleyi Oku →</a>
                   <a href="../content/posts/${post.slug}.md" target="_blank" style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">[Raw .md]</a>
                 </div>
               </div>
             `;
+
+            // Kartın herhangi bir yerine tıklandığında da makaleyi aç
+            article.addEventListener('click', (e) => {
+              if (!e.target.closest('a')) {
+                window.location.href = postUrl;
+              }
+            });
+
             container.appendChild(article);
           });
         }
