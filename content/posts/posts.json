@@ -1,23 +1,12 @@
 [
   {
-    "title": "Lazer Kaynağı Nedir? Nasıl Çalışır, Avantajları ve Kullanım Alanları",
-    "slug": "lazer-kaynagi-nedir",
-    "date": "2026-09-29",
+    "title": "Üretime Uygun Tasarım (DFM): Parçanız Çizimde Değil, Atölyede Kazanır",
+    "slug": "uretime-uygun-tasarim-dfm",
+    "date": "2026-10-01",
     "category": "Tasarım & Mühendislik",
-    "image": "/assets/images/Hdw9y.jpg",
-    "description": "Sac metal ve paslanmaz çelik imalatında kaynak kalitesi, ürünün hem görünümünü hem dayanımını belirler. Klasik yöntemlerde çarpılma, geniş ısı etkisi ve kaynak sonrası taşlama işi kaçınılmazdır. Lazer kaynağı, bu sorunları büyük ölçüde ortadan kaldıran modern bir birleştirme yöntemidir. Son yıllarda el tipi lazer kaynak makinelerinin yaygınlaşmasıyla küçük ve orta ölçekli atölyelerde de sıkça duyulur hale geldi.",
-    "tags": [],
-    "_expectedFilename": "lazer-kaynagi-nedir.md"
-  },
-  {
-    "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
-    "slug": "paslanmaz-celik-nedir",
-    "date": "2026-09-29",
-    "category": "Tasarım & Mühendislik",
-    "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
-    "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
-    "tags": [],
-    "_expectedFilename": "paslanmaz-celik-nedir.md"
+    "image": "/assets/images/Üretime Uygun Tasarım_ CAD’den İmalata.png",
+    "description": "|-",
+    "tags": []
   },
   {
     "title": "Paslanmaz Polisaj Nedir? Yöntemleri, Avantajları ve Kullanım Alanları",
@@ -30,8 +19,7 @@
       "Paslanmaz Polisaj",
       "Yüzey İşlem",
       "Inox"
-    ],
-    "_expectedFilename": "paslanmaz-polisaj-nedir.md"
+    ]
   },
   {
     "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
@@ -40,8 +28,25 @@
     "category": "Tasarım & Mühendislik",
     "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
     "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
-    "tags": [],
-    "_expectedFilename": "paslanmaz-celik-nedir.md"
+    "tags": []
+  },
+  {
+    "title": "Paslanmaz Çelik Nedir? En Çok Kullanılan 5 Paslanmaz Çelik Türü ve Farkları",
+    "slug": "paslanmaz-celik-nedir",
+    "date": "2026-09-29",
+    "category": "Tasarım & Mühendislik",
+    "image": "/assets/images/ChatGPT Görseli 28 Eyl 2026 08_49_32.png",
+    "description": "Paslanmaz çelik, imalat sektöründe en çok tercih edilen malzemelerden biri — ama \"paslanmaz çelik\" tek bir malzeme değil, aslında yüzlerce farklı alaşımı kapsayan geniş bir aile. Doğru türü seçmek, hem ürünün ömrünü hem de maliyetini doğrudan etkiliyor. Bu yazıda önce paslanmaz çeliğin temel mantığını, sonra en yaygın kullanılan 5 türü (AISI 304, 316, 430, 310, 301) karşılaştırmalı olarak anlatıyorum siz değerli ziyaretçiler için",
+    "tags": []
+  },
+  {
+    "title": "Lazer Kaynağı Nedir? Nasıl Çalışır, Avantajları ve Kullanım Alanları",
+    "slug": "lazer-kaynagi-nedir",
+    "date": "2026-09-29",
+    "category": "Tasarım & Mühendislik",
+    "image": "/assets/images/Hdw9y.jpg",
+    "description": "Sac metal ve paslanmaz çelik imalatında kaynak kalitesi, ürünün hem görünümünü hem dayanımını belirler. Klasik yöntemlerde çarpılma, geniş ısı etkisi ve kaynak sonrası taşlama işi kaçınılmazdır. Lazer kaynağı, bu sorunları büyük ölçüde ortadan kaldıran modern bir birleştirme yöntemidir. Son yıllarda el tipi lazer kaynak makinelerinin yaygınlaşmasıyla küçük ve orta ölçekli atölyelerde de sıkça duyulur hale geldi.",
+    "tags": []
   },
   {
     "title": "Sac Metal Bükümünde K-Faktörü ve İmalat Hatalarını Önleme",
@@ -56,8 +61,7 @@
       "K-Faktörü",
       "SolidWorks",
       "Tasarım"
-    ],
-    "_expectedFilename": "sac-metal-bukumunde-k-faktoru.md"
+    ]
   },
   {
     "title": "Talaşlı İmalatta Parça Maliyetini %30 Düşüren 5 Tasarım Kuralı",
@@ -72,8 +76,7 @@
       "DFM",
       "Maliyet Optimizasyonu",
       "Mühendislik"
-    ],
-    "_expectedFilename": "talasli-imalatta-maliyet-optimizasyonu.md"
+    ]
   },
   {
     "title": "Fikirden Seri Üretime: 5 Aşamalı Başarılı Proje Yönetimi",
@@ -82,7 +85,6 @@
     "category": "Ürün Geliştirme",
     "image": "assets/images/hero-cad.jpg",
     "description": "Eskiz aşamasından çalışan prototipe, ardından seri üretim bantlarına uzanan eksiksiz mühendislik yol haritası.",
-    "tags": [],
-    "_expectedFilename": "fikirden-seri-uretime-muhendislik-adimlari.md"
+    "tags": []
   }
 ]
